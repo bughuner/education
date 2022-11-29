@@ -25,7 +25,6 @@ func AddUserApi(c *gin.Context) {
 		return
 	}
 	user.ID = util.GetUUID()
-
 	userDb := database.Query.User
 	err = userDb.WithContext(c).Create(&user)
 	if err != nil {
