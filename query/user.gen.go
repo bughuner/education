@@ -40,8 +40,6 @@ func newUser(db *gorm.DB, opts ...gen.DOOption) user {
 	_user.Horizon = field.NewInt64(tableName, "horizon")
 	_user.Ordinate = field.NewInt64(tableName, "ordinate")
 	_user.Hp = field.NewInt64(tableName, "hp")
-	_user.CreateTime = field.NewInt64(tableName, "create_time")
-	_user.UpdateTime = field.NewInt64(tableName, "update_time")
 
 	_user.fillFieldMap()
 
@@ -51,22 +49,20 @@ func newUser(db *gorm.DB, opts ...gen.DOOption) user {
 type user struct {
 	userDo userDo
 
-	ALL        field.Asterisk
-	ID         field.String // 用户id
-	Name       field.String // 姓名
-	Password   field.String // 密码
-	Role       field.String // 角色  用户/管理员
-	Level      field.Int64  // 等级
-	Career     field.String // 职业
-	Image      field.String // 头像
-	Coin       field.Int64  // 金币
-	Credit     field.Int64  // 战斗积分
-	MapID      field.String // 地图id
-	Horizon    field.Int64  // 横坐标
-	Ordinate   field.Int64  // 纵坐标
-	Hp         field.Int64  // 生命值
-	CreateTime field.Int64  // 创建时间
-	UpdateTime field.Int64  // 更新时间
+	ALL      field.Asterisk
+	ID       field.String // 用户id
+	Name     field.String // 姓名
+	Password field.String // 密码
+	Role     field.String // 角色  用户/管理员
+	Level    field.Int64  // 等级
+	Career   field.String // 职业
+	Image    field.String // 头像
+	Coin     field.Int64  // 金币
+	Credit   field.Int64  // 战斗积分
+	MapID    field.String // 地图id
+	Horizon  field.Int64  // 横坐标
+	Ordinate field.Int64  // 纵坐标
+	Hp       field.Int64  // 生命值
 
 	fieldMap map[string]field.Expr
 }
@@ -96,8 +92,6 @@ func (u *user) updateTableName(table string) *user {
 	u.Horizon = field.NewInt64(table, "horizon")
 	u.Ordinate = field.NewInt64(table, "ordinate")
 	u.Hp = field.NewInt64(table, "hp")
-	u.CreateTime = field.NewInt64(table, "create_time")
-	u.UpdateTime = field.NewInt64(table, "update_time")
 
 	u.fillFieldMap()
 
@@ -120,7 +114,7 @@ func (u *user) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (u *user) fillFieldMap() {
-	u.fieldMap = make(map[string]field.Expr, 15)
+	u.fieldMap = make(map[string]field.Expr, 13)
 	u.fieldMap["id"] = u.ID
 	u.fieldMap["name"] = u.Name
 	u.fieldMap["password"] = u.Password
@@ -134,8 +128,6 @@ func (u *user) fillFieldMap() {
 	u.fieldMap["horizon"] = u.Horizon
 	u.fieldMap["ordinate"] = u.Ordinate
 	u.fieldMap["hp"] = u.Hp
-	u.fieldMap["create_time"] = u.CreateTime
-	u.fieldMap["update_time"] = u.UpdateTime
 }
 
 func (u user) clone(db *gorm.DB) user {

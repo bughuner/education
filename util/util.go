@@ -12,7 +12,6 @@ import (
 	"mime/multipart"
 	"net/http"
 	"os"
-	"os/exec"
 	"strings"
 	"time"
 )
@@ -130,21 +129,4 @@ func GetFile(imagePath string) string{
 // 删除文件
 func DeleteFile(name string) {
 	os.Remove(name)
-}
-
-
-func CallJava(){
-	cmd := exec.Command("java","Hello","tom")
-
-	out,err := cmd.Output()
-
-	if err != nil {
-		println("error:",err.Error())
-
-	}
-
-	fmt.Printf("call java class Hello: %q\n", string(out))
-
-
-
 }
