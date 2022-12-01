@@ -12,29 +12,23 @@ import (
 )
 
 func GetMonsterApi(c *gin.Context) {
-	var req model.Monster
-	err := c.ShouldBindJSON(&req)
-	if err != nil {
-		log.Printf("ShouldBindJSON monster failed, err:%v\n", err)
-		common.SendResponse(c, errno.ErrParams, err.Error())
-		return
-	}
-	if err = checkGetParam(req); err != nil {
-		log.Printf("checkParam failed, req:%v, err:%v\n", req, err)
+	monsterId := c.Query("monster_id")
+	if err := checkGetParam(monsterId); err != nil {
+		log.Printf("checkParam failed, monsterId:%v, err:%v\n", monsterId, err)
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	monster, err := getMonsterInfo(c, req.ID)
+	monster, err := getMonsterInfo(c, monsterId)
 	if err != nil {
-		log.Printf("getMonsterInfo failed, req:%v, err:%v\n", req, err)
+		log.Printf("getMonsterInfo failed, monsterId:%v, err:%v\n", monsterId, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
 		return
 	}
 	common.SendResponse(c, errno.OK, monster)
 }
 
-func checkGetParam(monster model.Monster) error {
-	if monster.ID == "" {
+func checkGetParam(monsterId string) error {
+	if monsterId == "" {
 		return util.BuildErrorInfo("参数错误")
 	}
 	return nil

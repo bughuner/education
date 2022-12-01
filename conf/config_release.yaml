@@ -13,3 +13,8 @@ mysql:
   addr: 47.101.204.54:3306
   username: betterman
   password: RNMTQ666!
+
+redis:
+  addr: 127.0.0.1
+  port: 6379
+  password:

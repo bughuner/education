@@ -30,6 +30,7 @@ func newQuestion(db *gorm.DB, opts ...gen.DOOption) question {
 	_question.ID = field.NewString(tableName, "id")
 	_question.Level = field.NewInt64(tableName, "level")
 	_question.Type = field.NewInt64(tableName, "type")
+	_question.Question = field.NewString(tableName, "question")
 	_question.QuestionA = field.NewString(tableName, "question_a")
 	_question.QuestionB = field.NewString(tableName, "question_b")
 	_question.QuestionC = field.NewString(tableName, "question_c")
@@ -49,6 +50,7 @@ type question struct {
 	ID        field.String // 问答题id
 	Level     field.Int64  // 题目等级
 	Type      field.Int64  // 题目分类
+	Question  field.String // 问题
 	QuestionA field.String // A选项
 	QuestionB field.String // B选项
 	QuestionC field.String // C选项
@@ -74,6 +76,7 @@ func (q *question) updateTableName(table string) *question {
 	q.ID = field.NewString(table, "id")
 	q.Level = field.NewInt64(table, "level")
 	q.Type = field.NewInt64(table, "type")
+	q.Question = field.NewString(table, "question")
 	q.QuestionA = field.NewString(table, "question_a")
 	q.QuestionB = field.NewString(table, "question_b")
 	q.QuestionC = field.NewString(table, "question_c")
@@ -102,10 +105,11 @@ func (q *question) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (q *question) fillFieldMap() {
-	q.fieldMap = make(map[string]field.Expr, 9)
+	q.fieldMap = make(map[string]field.Expr, 10)
 	q.fieldMap["id"] = q.ID
 	q.fieldMap["level"] = q.Level
 	q.fieldMap["type"] = q.Type
+	q.fieldMap["question"] = q.Question
 	q.fieldMap["question_a"] = q.QuestionA
 	q.fieldMap["question_b"] = q.QuestionB
 	q.fieldMap["question_c"] = q.QuestionC

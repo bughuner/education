@@ -11,6 +11,7 @@ type Question struct {
 	ID        string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`      // 问答题id
 	Level     int64  `gorm:"column:level;type:int" json:"level"`                    // 题目等级
 	Type      int64  `gorm:"column:type;type:int" json:"type"`                      // 题目分类
+	Question  string `gorm:"column:question;type:varchar(255)" json:"question"`     // 问题
 	QuestionA string `gorm:"column:question_a;type:varchar(255)" json:"question_a"` // A选项
 	QuestionB string `gorm:"column:question_b;type:varchar(255)" json:"question_b"` // B选项
 	QuestionC string `gorm:"column:question_c;type:varchar(255)" json:"question_c"` // C选项

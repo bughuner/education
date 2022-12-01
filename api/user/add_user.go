@@ -7,6 +7,7 @@ import (
 	"education/model"
 	"education/util"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"log"
 )
 
@@ -19,13 +20,31 @@ func AddUserApi(c *gin.Context) {
 		common.SendResponse(c, errno.ErrParams, err.Error())
 		return
 	}
-	user.ID = util.GetUUID()
-	userDb := database.Query.User
-	err = userDb.WithContext(c).Create(&user)
+	userInfo, err := addUser(c, &user)
 	if err != nil {
-		log.Printf("userDb create user failed,err:%v\n", err)
-		common.SendResponse(c, errno.AddErr, err.Error())
+		log.Printf("addUser failed, user:%v, err:%v\n", user, err)
+		common.SendResponse(c, errno.ErrParams, err.Error())
 		return
 	}
-	common.SendResponse(c, errno.OK, user)
+	common.SendResponse(c, errno.OK, userInfo)
+}
+
+func addUser(c *gin.Context, user *model.User) (*model.User, error){
+	userDb := database.Query.User
+	oldUser, err := userDb.WithContext(c).Where(userDb.Name.Eq(user.Name)).First()
+	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Printf("userDb query failed, err:%v\n", err)
+		return nil, err
+	}
+	if oldUser != nil {
+		log.Printf("用户名已经存在")
+		return nil, util.BuildErrorInfo("用户名已经存在")
+	}
+	user.ID = util.GetUUID()
+	err = userDb.WithContext(c).Create(user)
+	if err != nil {
+		log.Printf("userDb create user failed,err:%v\n", err)
+		return nil, err
+	}
+	return user, nil
 }

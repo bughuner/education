@@ -38,8 +38,8 @@ func UpdateUserApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, user)
 }
 
-func checkUpdateParam(monster model.User) error {
-	if monster.ID == "" {
+func checkUpdateParam(user model.User) error {
+	if user.ID == "" {
 		return util.BuildErrorInfo("ID为空")
 	}
 	return nil

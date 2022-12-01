@@ -19,6 +19,7 @@ func init() {
 		panic(err)
 	}
 	database.InitMysql()
+	database.InitRedis()
 }
 
 func main() {
