@@ -1,8 +1,8 @@
 #!/user/bin/env bash
 RUN_NAME="education"
 
-mkdir -p output/bin output/conf
-cp -R conf/* output/conf
+mkdir -p output/bin output/bin/conf
+cp -R conf/* output/bin/conf
 
 # linux 环境
 set CGO_ENABLED=0

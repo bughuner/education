@@ -58,9 +58,7 @@ func updateMonster(c *gin.Context, monster *model.Monster, req *model.Monster) (
 	if req.Level != 0 {
 		monster.Level = req.Level
 	}
-	if req.Hp != 0 {
-		monster.Hp = req.Hp
-	}
+	monster.Hp = req.Hp
 
 	monsterDb := database.Query.Monster
 	err := monsterDb.WithContext(c).Save(monster)

@@ -3,6 +3,7 @@ package main
 import (
 	"education/config"
 	"education/database"
+	"education/middle"
 	"education/router"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/pflag"
@@ -24,6 +25,9 @@ func init() {
 
 func main() {
 	g := gin.Default()
+	g.Use(middle.Cors())
+	g.Use(gin.Logger())
+	g.Use(gin.Recovery())
 	router.InitRouter(g)
 	g.Run(viper.GetString("addr"))
 }

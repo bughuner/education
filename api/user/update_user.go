@@ -61,12 +61,6 @@ func updateUser(c *gin.Context, user *model.User, req *model.User) (*model.User,
 	if req.Image != "" {
 		user.Image = req.Image
 	}
-	if req.Coin != 0 {
-		user.Coin = req.Coin
-	}
-	if req.Credit != 0 {
-		user.Credit = req.Credit
-	}
 	if req.MapID != "" {
 		user.MapID = req.MapID
 	}
@@ -79,9 +73,9 @@ func updateUser(c *gin.Context, user *model.User, req *model.User) (*model.User,
 	if req.Level != 0 {
 		user.Level = req.Level
 	}
-	if req.Hp != 0 {
-		user.Hp = req.Hp
-	}
+	user.Coin = req.Coin
+	user.Credit = req.Credit
+	user.Hp = req.Hp
 	userDb := database.Query.User
 	err := userDb.WithContext(c).Save(user)
 	if err != nil {
