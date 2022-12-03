@@ -3,7 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middle/cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/middle/cors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/question/get_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/question/get_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/shop/get_gift_count.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/shop/get_gift_count.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/shop/update_gift_count.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/shop/update_gift_count.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/exchange_gift.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/exchange_gift.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/question.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/question.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/bin/education" beforeDir="false" afterPath="$PROJECT_DIR$/output/bin/education" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/exchange_gift.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/exchange_gift.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/question.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/question.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +52,8 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ManagementSystem" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -109,57 +118,90 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="367" y="73" key="#Go_Modules_(vgo)/0.0.1549.823@0.0.1549.823" timestamp="1669682859808" />
-    <state x="230" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1669683263616">
+    <state x="230" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1669980376361">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state x="230" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1549.823@0.0.1549.823" timestamp="1669683263616" />
+    <state x="230" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1549.823@0.0.1549.823" timestamp="1669980376361" />
     <state x="526" y="220" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1669888469262">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="526" y="220" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1549.823@0.0.1549.823" timestamp="1669888469262" />
+    <state x="414" y="209" key="EditFileWatcherDialog" timestamp="1670046199664">
+      <screen x="0" y="0" width="1549" height="823" />
+    </state>
+    <state x="414" y="209" key="EditFileWatcherDialog/0.0.1549.823@0.0.1549.823" timestamp="1670046199664" />
     <state x="510" y="176" key="EnvironmentVariablesDialog" timestamp="1669683223957">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="510" y="176" key="EnvironmentVariablesDialog/0.0.1549.823@0.0.1549.823" timestamp="1669683223957" />
-    <state x="555" y="170" key="FileChooserDialogImpl" timestamp="1669683210458">
+    <state x="555" y="170" key="FileChooserDialogImpl" timestamp="1670046193713">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1669683210458" />
-    <state width="1506" height="186" key="GridCell.Tab.0.bottom" timestamp="1669963687090">
+    <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1670046193713" />
+    <state width="1506" height="231" key="GridCell.Tab.0.bottom" timestamp="1670062155731">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="186" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1669963687090" />
-    <state width="1506" height="186" key="GridCell.Tab.0.center" timestamp="1669963687088">
+    <state width="1506" height="231" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670062155731" />
+    <state width="1506" height="231" key="GridCell.Tab.0.center" timestamp="1670062155731">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="186" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1669963687088" />
-    <state width="1506" height="186" key="GridCell.Tab.0.left" timestamp="1669963687088">
+    <state width="1506" height="231" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670062155731" />
+    <state width="1506" height="231" key="GridCell.Tab.0.left" timestamp="1670062155731">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="186" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1669963687088" />
-    <state width="1506" height="186" key="GridCell.Tab.0.right" timestamp="1669963687088">
+    <state width="1506" height="231" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670062155731" />
+    <state width="1506" height="231" key="GridCell.Tab.0.right" timestamp="1670062155731">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="186" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1669963687088" />
-    <state width="1506" height="214" key="GridCell.Tab.1.bottom" timestamp="1669858378968">
+    <state width="1506" height="231" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670062155731" />
+    <state width="1506" height="191" key="GridCell.Tab.1.bottom" timestamp="1670061808484">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="214" key="GridCell.Tab.1.bottom/0.0.1549.823@0.0.1549.823" timestamp="1669858378968" />
-    <state width="1506" height="214" key="GridCell.Tab.1.center" timestamp="1669858378968">
+    <state width="1506" height="191" key="GridCell.Tab.1.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670061808484" />
+    <state width="1506" height="191" key="GridCell.Tab.1.center" timestamp="1670061808484">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="214" key="GridCell.Tab.1.center/0.0.1549.823@0.0.1549.823" timestamp="1669858378968" />
-    <state width="1506" height="214" key="GridCell.Tab.1.left" timestamp="1669858378968">
+    <state width="1506" height="191" key="GridCell.Tab.1.center/0.0.1549.823@0.0.1549.823" timestamp="1670061808484" />
+    <state width="1506" height="191" key="GridCell.Tab.1.left" timestamp="1670061808483">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="214" key="GridCell.Tab.1.left/0.0.1549.823@0.0.1549.823" timestamp="1669858378968" />
-    <state width="1506" height="214" key="GridCell.Tab.1.right" timestamp="1669858378968">
+    <state width="1506" height="191" key="GridCell.Tab.1.left/0.0.1549.823@0.0.1549.823" timestamp="1670061808483" />
+    <state width="1506" height="191" key="GridCell.Tab.1.right" timestamp="1670061808484">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="214" key="GridCell.Tab.1.right/0.0.1549.823@0.0.1549.823" timestamp="1669858378968" />
-    <state x="286" y="57" key="SettingsEditor" timestamp="1669683304323">
+    <state width="1506" height="191" key="GridCell.Tab.1.right/0.0.1549.823@0.0.1549.823" timestamp="1670061808484" />
+    <state x="286" y="57" key="SettingsEditor" timestamp="1670046202897">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state x="286" y="57" key="SettingsEditor/0.0.1549.823@0.0.1549.823" timestamp="1669683304323" />
+    <state x="286" y="57" key="SettingsEditor/0.0.1549.823@0.0.1549.823" timestamp="1670046202897" />
+    <state x="474" y="166" width="601" height="490" key="find.popup" timestamp="1670051655558">
+      <screen x="0" y="0" width="1549" height="823" />
+    </state>
+    <state x="474" y="166" width="601" height="490" key="find.popup/0.0.1549.823@0.0.1549.823" timestamp="1670051655558" />
+    <state x="437" y="144" width="672" height="678" key="search.everywhere.popup" timestamp="1670052788677">
+      <screen x="0" y="0" width="1549" height="823" />
+    </state>
+    <state x="437" y="144" width="672" height="678" key="search.everywhere.popup/0.0.1549.823@0.0.1549.823" timestamp="1670052788677" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/shop/add_gift_count.go</url>
+          <line>53</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/shop/update_gift_count.go</url>
+          <line>64</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/question/add_question.go</url>
+          <line>38</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

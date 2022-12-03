@@ -32,6 +32,7 @@ func newExchangeGift(db *gorm.DB, opts ...gen.DOOption) exchangeGift {
 	_exchangeGift.GiftID = field.NewString(tableName, "gift_id")
 	_exchangeGift.Count = field.NewInt64(tableName, "count")
 	_exchangeGift.Time = field.NewInt64(tableName, "time")
+	_exchangeGift.IsExchange = field.NewInt64(tableName, "is_exchange")
 
 	_exchangeGift.fillFieldMap()
 
@@ -41,12 +42,13 @@ func newExchangeGift(db *gorm.DB, opts ...gen.DOOption) exchangeGift {
 type exchangeGift struct {
 	exchangeGiftDo exchangeGiftDo
 
-	ALL    field.Asterisk
-	ID     field.String // 礼物兑换id
-	UserID field.String // 用户id
-	GiftID field.String // 物品id
-	Count  field.Int64  // 兑换数量
-	Time   field.Int64  // 兑换时间
+	ALL        field.Asterisk
+	ID         field.String // 礼物兑换id
+	UserID     field.String // 用户id
+	GiftID     field.String // 物品id
+	Count      field.Int64  // 兑换数量
+	Time       field.Int64  // 兑换时间
+	IsExchange field.Int64  // 是否兑换0-未兑换 1-兑换
 
 	fieldMap map[string]field.Expr
 }
@@ -68,6 +70,7 @@ func (e *exchangeGift) updateTableName(table string) *exchangeGift {
 	e.GiftID = field.NewString(table, "gift_id")
 	e.Count = field.NewInt64(table, "count")
 	e.Time = field.NewInt64(table, "time")
+	e.IsExchange = field.NewInt64(table, "is_exchange")
 
 	e.fillFieldMap()
 
@@ -92,12 +95,13 @@ func (e *exchangeGift) GetFieldByName(fieldName string) (field.OrderExpr, bool) 
 }
 
 func (e *exchangeGift) fillFieldMap() {
-	e.fieldMap = make(map[string]field.Expr, 5)
+	e.fieldMap = make(map[string]field.Expr, 6)
 	e.fieldMap["id"] = e.ID
 	e.fieldMap["user_id"] = e.UserID
 	e.fieldMap["gift_id"] = e.GiftID
 	e.fieldMap["count"] = e.Count
 	e.fieldMap["time"] = e.Time
+	e.fieldMap["is_exchange"] = e.IsExchange
 }
 
 func (e exchangeGift) clone(db *gorm.DB) exchangeGift {

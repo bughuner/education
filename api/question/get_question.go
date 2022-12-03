@@ -4,21 +4,21 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
+	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
 	"log"
 )
 
 func GetQuestionApi(c *gin.Context) {
-	var req model.Question
+	var req *model_view.QuestionReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		log.Printf("ShouldBindJSON question failed, err:%v\n", err)
+		log.Printf("ShouldBindJSON question_req failed, err:%v\n", err)
 		common.SendResponse(c, errno.ErrParams, err.Error())
 		return
 	}
-	questionList, err := getQuestionList(c, &req)
+	questionList, err := GetQuestionList(c, req)
 	if err != nil {
 		log.Printf("getQuestionList failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
@@ -27,7 +27,7 @@ func GetQuestionApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, questionList)
 }
 
-func getQuestionList(c *gin.Context, req *model.Question)([]*model.Question, error) {
+func GetQuestionList(c *gin.Context, req *model_view.QuestionReq) ([]*model_view.QuestionResp, error) {
 	questionDb := database.Query.Question
 	sql := questionDb.WithContext(c)
 	if req.ID != "" {
@@ -47,5 +47,23 @@ func getQuestionList(c *gin.Context, req *model.Question)([]*model.Question, err
 		log.Printf("questionDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("questionDb query failed, err:%v", err)
 	}
-	return questionList, nil
+	res := make([]*model_view.QuestionResp, len(questionList))
+	for i, item := range questionList {
+		questionSelect, err := getQuestionSelectByQuestionId(c, nil, item.ID)
+		if err != nil {
+			log.Printf("getQuestionSelectByQuestionId failed, err:%v\n", err)
+			continue
+		}
+		questionAnswer, err := getQuestionAnswerByQuestionId(c, nil, item.ID)
+		if err != nil {
+			log.Printf("getQuestionAnswerByQuestionId failed, err:%v\n", err)
+			continue
+		}
+		res[i] = &model_view.QuestionResp{
+			Question:       item,
+			QuestionSelect: questionSelect,
+			QuestionAnswer: questionAnswer,
+		}
+	}
+	return res, nil
 }

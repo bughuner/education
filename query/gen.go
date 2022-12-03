@@ -16,18 +16,21 @@ import (
 )
 
 var (
-	Q            = new(Query)
-	Doc          *doc
-	ExchangeGift *exchangeGift
-	Gift         *gift
-	Monster      *monster
-	Npc          *npc
-	NpcTask      *npcTask
-	Question     *question
-	Shop         *shop
-	Task         *task
-	User         *user
-	UserTask     *userTask
+	Q              = new(Query)
+	Doc            *doc
+	ExchangeGift   *exchangeGift
+	Gift           *gift
+	Monster        *monster
+	Npc            *npc
+	NpcTask        *npcTask
+	Question       *question
+	QuestionAnswer *questionAnswer
+	QuestionSelect *questionSelect
+	Shop           *shop
+	Task           *task
+	User           *user
+	UserQuestion   *userQuestion
+	UserTask       *userTask
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
@@ -39,61 +42,73 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	Npc = &Q.Npc
 	NpcTask = &Q.NpcTask
 	Question = &Q.Question
+	QuestionAnswer = &Q.QuestionAnswer
+	QuestionSelect = &Q.QuestionSelect
 	Shop = &Q.Shop
 	Task = &Q.Task
 	User = &Q.User
+	UserQuestion = &Q.UserQuestion
 	UserTask = &Q.UserTask
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:           db,
-		Doc:          newDoc(db, opts...),
-		ExchangeGift: newExchangeGift(db, opts...),
-		Gift:         newGift(db, opts...),
-		Monster:      newMonster(db, opts...),
-		Npc:          newNpc(db, opts...),
-		NpcTask:      newNpcTask(db, opts...),
-		Question:     newQuestion(db, opts...),
-		Shop:         newShop(db, opts...),
-		Task:         newTask(db, opts...),
-		User:         newUser(db, opts...),
-		UserTask:     newUserTask(db, opts...),
+		db:             db,
+		Doc:            newDoc(db, opts...),
+		ExchangeGift:   newExchangeGift(db, opts...),
+		Gift:           newGift(db, opts...),
+		Monster:        newMonster(db, opts...),
+		Npc:            newNpc(db, opts...),
+		NpcTask:        newNpcTask(db, opts...),
+		Question:       newQuestion(db, opts...),
+		QuestionAnswer: newQuestionAnswer(db, opts...),
+		QuestionSelect: newQuestionSelect(db, opts...),
+		Shop:           newShop(db, opts...),
+		Task:           newTask(db, opts...),
+		User:           newUser(db, opts...),
+		UserQuestion:   newUserQuestion(db, opts...),
+		UserTask:       newUserTask(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	Doc          doc
-	ExchangeGift exchangeGift
-	Gift         gift
-	Monster      monster
-	Npc          npc
-	NpcTask      npcTask
-	Question     question
-	Shop         shop
-	Task         task
-	User         user
-	UserTask     userTask
+	Doc            doc
+	ExchangeGift   exchangeGift
+	Gift           gift
+	Monster        monster
+	Npc            npc
+	NpcTask        npcTask
+	Question       question
+	QuestionAnswer questionAnswer
+	QuestionSelect questionSelect
+	Shop           shop
+	Task           task
+	User           user
+	UserQuestion   userQuestion
+	UserTask       userTask
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:           db,
-		Doc:          q.Doc.clone(db),
-		ExchangeGift: q.ExchangeGift.clone(db),
-		Gift:         q.Gift.clone(db),
-		Monster:      q.Monster.clone(db),
-		Npc:          q.Npc.clone(db),
-		NpcTask:      q.NpcTask.clone(db),
-		Question:     q.Question.clone(db),
-		Shop:         q.Shop.clone(db),
-		Task:         q.Task.clone(db),
-		User:         q.User.clone(db),
-		UserTask:     q.UserTask.clone(db),
+		db:             db,
+		Doc:            q.Doc.clone(db),
+		ExchangeGift:   q.ExchangeGift.clone(db),
+		Gift:           q.Gift.clone(db),
+		Monster:        q.Monster.clone(db),
+		Npc:            q.Npc.clone(db),
+		NpcTask:        q.NpcTask.clone(db),
+		Question:       q.Question.clone(db),
+		QuestionAnswer: q.QuestionAnswer.clone(db),
+		QuestionSelect: q.QuestionSelect.clone(db),
+		Shop:           q.Shop.clone(db),
+		Task:           q.Task.clone(db),
+		User:           q.User.clone(db),
+		UserQuestion:   q.UserQuestion.clone(db),
+		UserTask:       q.UserTask.clone(db),
 	}
 }
 
@@ -107,48 +122,57 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:           db,
-		Doc:          q.Doc.replaceDB(db),
-		ExchangeGift: q.ExchangeGift.replaceDB(db),
-		Gift:         q.Gift.replaceDB(db),
-		Monster:      q.Monster.replaceDB(db),
-		Npc:          q.Npc.replaceDB(db),
-		NpcTask:      q.NpcTask.replaceDB(db),
-		Question:     q.Question.replaceDB(db),
-		Shop:         q.Shop.replaceDB(db),
-		Task:         q.Task.replaceDB(db),
-		User:         q.User.replaceDB(db),
-		UserTask:     q.UserTask.replaceDB(db),
+		db:             db,
+		Doc:            q.Doc.replaceDB(db),
+		ExchangeGift:   q.ExchangeGift.replaceDB(db),
+		Gift:           q.Gift.replaceDB(db),
+		Monster:        q.Monster.replaceDB(db),
+		Npc:            q.Npc.replaceDB(db),
+		NpcTask:        q.NpcTask.replaceDB(db),
+		Question:       q.Question.replaceDB(db),
+		QuestionAnswer: q.QuestionAnswer.replaceDB(db),
+		QuestionSelect: q.QuestionSelect.replaceDB(db),
+		Shop:           q.Shop.replaceDB(db),
+		Task:           q.Task.replaceDB(db),
+		User:           q.User.replaceDB(db),
+		UserQuestion:   q.UserQuestion.replaceDB(db),
+		UserTask:       q.UserTask.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	Doc          IDocDo
-	ExchangeGift IExchangeGiftDo
-	Gift         IGiftDo
-	Monster      IMonsterDo
-	Npc          INpcDo
-	NpcTask      INpcTaskDo
-	Question     IQuestionDo
-	Shop         IShopDo
-	Task         ITaskDo
-	User         IUserDo
-	UserTask     IUserTaskDo
+	Doc            IDocDo
+	ExchangeGift   IExchangeGiftDo
+	Gift           IGiftDo
+	Monster        IMonsterDo
+	Npc            INpcDo
+	NpcTask        INpcTaskDo
+	Question       IQuestionDo
+	QuestionAnswer IQuestionAnswerDo
+	QuestionSelect IQuestionSelectDo
+	Shop           IShopDo
+	Task           ITaskDo
+	User           IUserDo
+	UserQuestion   IUserQuestionDo
+	UserTask       IUserTaskDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		Doc:          q.Doc.WithContext(ctx),
-		ExchangeGift: q.ExchangeGift.WithContext(ctx),
-		Gift:         q.Gift.WithContext(ctx),
-		Monster:      q.Monster.WithContext(ctx),
-		Npc:          q.Npc.WithContext(ctx),
-		NpcTask:      q.NpcTask.WithContext(ctx),
-		Question:     q.Question.WithContext(ctx),
-		Shop:         q.Shop.WithContext(ctx),
-		Task:         q.Task.WithContext(ctx),
-		User:         q.User.WithContext(ctx),
-		UserTask:     q.UserTask.WithContext(ctx),
+		Doc:            q.Doc.WithContext(ctx),
+		ExchangeGift:   q.ExchangeGift.WithContext(ctx),
+		Gift:           q.Gift.WithContext(ctx),
+		Monster:        q.Monster.WithContext(ctx),
+		Npc:            q.Npc.WithContext(ctx),
+		NpcTask:        q.NpcTask.WithContext(ctx),
+		Question:       q.Question.WithContext(ctx),
+		QuestionAnswer: q.QuestionAnswer.WithContext(ctx),
+		QuestionSelect: q.QuestionSelect.WithContext(ctx),
+		Shop:           q.Shop.WithContext(ctx),
+		Task:           q.Task.WithContext(ctx),
+		User:           q.User.WithContext(ctx),
+		UserQuestion:   q.UserQuestion.WithContext(ctx),
+		UserTask:       q.UserTask.WithContext(ctx),
 	}
 }
 

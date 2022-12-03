@@ -14,29 +14,26 @@ import (
 
 type ShopGiftCountInfo struct {
 	ShopGiftCountList []*model_view.ShopGiftCount
-	total int64
+	total             int64
 }
 
+// 获取奖品详情
 func GetGiftCountApi(c *gin.Context) {
 	pageNo := c.Query("page_no")
 	pageSize := c.Query("page_size")
 	pageNoInt, err := util.ConvertStringToInt(pageNo)
 	if err != nil {
 		log.Printf("数据转换错误")
-		common.SendResponse(c, errno.ErrParams, err.Error())
-		return
 	}
-	pageSizeInt, err :=  util.ConvertStringToInt(pageSize)
+	pageSizeInt, err := util.ConvertStringToInt(pageSize)
 	if err != nil {
 		log.Printf("数据转换错误")
-		common.SendResponse(c, errno.ErrParams, err.Error())
-		return
 	}
 	if pageNoInt == 0 || pageSizeInt == 0 {
 		pageNoInt = 1
 		pageSizeInt = 100
 	}
-	shopGiftCountList,total, err := getGiftCount(c, pageNoInt, pageSizeInt)
+	shopGiftCountList, total, err := getGiftCount(c, pageNoInt, pageSizeInt)
 	if err != nil {
 		log.Printf("getGiftCount failed, pageNo:%v, pageSize:%v, err:%v", pageNoInt, pageSizeInt, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
@@ -49,7 +46,7 @@ func GetGiftCountApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, shopGiftCountInfo)
 }
 
-func getGiftCount(c *gin.Context, pageNo, pageSize int)([]*model_view.ShopGiftCount, int64, error) {
+func getGiftCount(c *gin.Context, pageNo, pageSize int) ([]*model_view.ShopGiftCount, int64, error) {
 	shopDb := database.Query.Shop
 	sql := shopDb.WithContext(c)
 	total, err := sql.Count()
@@ -63,7 +60,7 @@ func getGiftCount(c *gin.Context, pageNo, pageSize int)([]*model_view.ShopGiftCo
 		return nil, 0, util.BuildErrorInfo("shopDb query failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
 	}
 	giftIds := make([]string, len(shopList))
-	for i, item :=  range shopList {
+	for i, item := range shopList {
 		giftIds[i] = item.GiftID
 	}
 	giftList, err := gift.GetGiftById(c, giftIds)

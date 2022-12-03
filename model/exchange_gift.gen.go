@@ -8,11 +8,12 @@ const TableNameExchangeGift = "exchange_gift"
 
 // ExchangeGift mapped from table <exchange_gift>
 type ExchangeGift struct {
-	ID     string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"` // 礼物兑换id
-	UserID string `gorm:"column:user_id;type:varchar(255)" json:"user_id"`  // 用户id
-	GiftID string `gorm:"column:gift_id;type:varchar(255)" json:"gift_id"`  // 物品id
-	Count  int64  `gorm:"column:count;type:int" json:"count"`               // 兑换数量
-	Time   int64  `gorm:"column:time;type:bigint" json:"time"`              // 兑换时间
+	ID         string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`   // 礼物兑换id
+	UserID     string `gorm:"column:user_id;type:varchar(255)" json:"user_id"`    // 用户id
+	GiftID     string `gorm:"column:gift_id;type:varchar(255)" json:"gift_id"`    // 物品id
+	Count      int64  `gorm:"column:count;type:int" json:"count"`                 // 兑换数量
+	Time       int64  `gorm:"column:time;type:bigint" json:"time"`                // 兑换时间
+	IsExchange int64  `gorm:"column:is_exchange;type:tinyint" json:"is_exchange"` // 是否兑换0-未兑换 1-兑换
 }
 
 // TableName ExchangeGift's table name
