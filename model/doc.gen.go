@@ -12,6 +12,7 @@ type Doc struct {
 	Link    string `gorm:"column:link;type:varchar(255)" json:"link"`        // 链接
 	Author  string `gorm:"column:author;type:varchar(255)" json:"author"`    // 作者
 	Content string `gorm:"column:content;type:varchar(255)" json:"content"`  // 内容
+	Status  int64  `gorm:"column:status;type:tinyint" json:"status"`         // 状态 0-待审核 1-审核
 }
 
 // TableName Doc's table name

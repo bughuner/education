@@ -31,6 +31,7 @@ func newDoc(db *gorm.DB, opts ...gen.DOOption) doc {
 	_doc.Link = field.NewString(tableName, "link")
 	_doc.Author = field.NewString(tableName, "author")
 	_doc.Content = field.NewString(tableName, "content")
+	_doc.Status = field.NewInt64(tableName, "status")
 
 	_doc.fillFieldMap()
 
@@ -45,6 +46,7 @@ type doc struct {
 	Link    field.String // 链接
 	Author  field.String // 作者
 	Content field.String // 内容
+	Status  field.Int64  // 状态 0-待审核 1-审核
 
 	fieldMap map[string]field.Expr
 }
@@ -65,6 +67,7 @@ func (d *doc) updateTableName(table string) *doc {
 	d.Link = field.NewString(table, "link")
 	d.Author = field.NewString(table, "author")
 	d.Content = field.NewString(table, "content")
+	d.Status = field.NewInt64(table, "status")
 
 	d.fillFieldMap()
 
@@ -87,11 +90,12 @@ func (d *doc) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (d *doc) fillFieldMap() {
-	d.fieldMap = make(map[string]field.Expr, 4)
+	d.fieldMap = make(map[string]field.Expr, 5)
 	d.fieldMap["id"] = d.ID
 	d.fieldMap["link"] = d.Link
 	d.fieldMap["author"] = d.Author
 	d.fieldMap["content"] = d.Content
+	d.fieldMap["status"] = d.Status
 }
 
 func (d doc) clone(db *gorm.DB) doc {

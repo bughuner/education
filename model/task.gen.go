@@ -9,12 +9,14 @@ const TableNameTask = "task"
 // Task mapped from table <task>
 type Task struct {
 	ID           string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`          // 任务id
-	Type         int64  `gorm:"column:type;type:int" json:"type"`                          // 任务类型 1-打怪类 2-阅读任务 3-附件任务
+	Type         int64  `gorm:"column:type;type:int" json:"type"`                          // 任务类型 1-打怪类 2-阅读任务 3-完成文章的题目4-附件任务
 	Level        int64  `gorm:"column:level;type:int" json:"level"`                        // 任务等级
 	Introduction string `gorm:"column:introduction;type:varchar(255)" json:"introduction"` // 任务描述
 	Image        string `gorm:"column:image;type:varchar(255)" json:"image"`               // 图片链接
 	Experience   int64  `gorm:"column:experience;type:int" json:"experience"`              // 经验奖励
 	Coin         int64  `gorm:"column:coin;type:int" json:"coin"`                          // 金币奖励
+	Num          int64  `gorm:"column:num;type:int" json:"num"`                            // 时间/打怪的个数
+	PreTask      string `gorm:"column:pre_task;type:varchar(255)" json:"pre_task"`         // 前序任务id
 }
 
 // TableName Task's table name

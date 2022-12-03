@@ -32,6 +32,7 @@ func newQuestion(db *gorm.DB, opts ...gen.DOOption) question {
 	_question.Type = field.NewInt64(tableName, "type")
 	_question.Question = field.NewString(tableName, "question")
 	_question.Damage = field.NewInt64(tableName, "damage")
+	_question.Status = field.NewInt64(tableName, "status")
 
 	_question.fillFieldMap()
 
@@ -47,6 +48,7 @@ type question struct {
 	Type     field.Int64  // 题目分类
 	Question field.String // 问题
 	Damage   field.Int64  // 题目伤害
+	Status   field.Int64  // 状态 0-待审核 1-审核
 
 	fieldMap map[string]field.Expr
 }
@@ -68,6 +70,7 @@ func (q *question) updateTableName(table string) *question {
 	q.Type = field.NewInt64(table, "type")
 	q.Question = field.NewString(table, "question")
 	q.Damage = field.NewInt64(table, "damage")
+	q.Status = field.NewInt64(table, "status")
 
 	q.fillFieldMap()
 
@@ -90,12 +93,13 @@ func (q *question) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (q *question) fillFieldMap() {
-	q.fieldMap = make(map[string]field.Expr, 5)
+	q.fieldMap = make(map[string]field.Expr, 6)
 	q.fieldMap["id"] = q.ID
 	q.fieldMap["level"] = q.Level
 	q.fieldMap["type"] = q.Type
 	q.fieldMap["question"] = q.Question
 	q.fieldMap["damage"] = q.Damage
+	q.fieldMap["status"] = q.Status
 }
 
 func (q question) clone(db *gorm.DB) question {
