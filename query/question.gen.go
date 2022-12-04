@@ -45,7 +45,7 @@ type question struct {
 	ALL      field.Asterisk
 	ID       field.String // 问答题id
 	Level    field.Int64  // 题目等级
-	Type     field.Int64  // 题目分类
+	Type     field.Int64  // 题目分类 1-判断 2-单选 3-多选
 	Question field.String // 问题
 	Damage   field.Int64  // 题目伤害
 	Status   field.Int64  // 状态 0-待审核 1-审核

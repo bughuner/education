@@ -24,7 +24,7 @@ func LoginApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	user, err := login(c, req.Name, req.Password)
+	user, err := login(c, req.Account, req.Password)
 	if err != nil {
 		log.Printf("login failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
@@ -33,10 +33,9 @@ func LoginApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, user)
 }
 
-
 func checkParam(user model.User) error {
-	if user.Name == "" {
-		return util.BuildErrorInfo("用户名不能为空")
+	if user.Account == "" {
+		return util.BuildErrorInfo("账号不能为空")
 	}
 	if user.Password == "" {
 		return util.BuildErrorInfo("密码不能为空")
@@ -44,11 +43,11 @@ func checkParam(user model.User) error {
 	return nil
 }
 
-func login(c *gin.Context, name, password string) (*model.User, error) {
+func login(c *gin.Context, account, password string) (*model.User, error) {
 	userDb := database.Query.User
-	oldUser, err := userDb.WithContext(c).Where(userDb.Name.Eq(name)).First()
-	if err != nil && err != gorm.ErrRecordNotFound{
-		log.Printf("userDb query failed, name:%v, password:%v, err:%v\n", name, password, err)
+	oldUser, err := userDb.WithContext(c).Where(userDb.Account.Eq(account)).First()
+	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Printf("userDb query failed, account:%v, password:%v, err:%v\n", account, password, err)
 		return nil, util.BuildErrorInfo("userDb query failed, err:%v", err)
 	}
 	if oldUser == nil {
@@ -63,7 +62,7 @@ func login(c *gin.Context, name, password string) (*model.User, error) {
 func getUserById(c *gin.Context, id string) (*model.User, error) {
 	userDb := database.Query.User
 	user, err := userDb.WithContext(c).Where(userDb.ID.Eq(id)).First()
-	if err != nil && err != gorm.ErrRecordNotFound{
+	if err != nil && err != gorm.ErrRecordNotFound {
 		log.Printf("userDb query failed, id:%v, err:%v\n", id, err)
 		return nil, util.BuildErrorInfo("userDb query failed, err:%v", err)
 	}

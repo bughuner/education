@@ -9,6 +9,7 @@ const TableNameUser = "user"
 // User mapped from table <user>
 type User struct {
 	ID       string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`  // 用户id
+	Account  string `gorm:"column:account;type:varchar(255)" json:"account"`   // 账号
 	Name     string `gorm:"column:name;type:varchar(255)" json:"name"`         // 姓名
 	Password string `gorm:"column:password;type:varchar(255)" json:"password"` // 密码
 	Role     string `gorm:"column:role;type:varchar(255)" json:"role"`         // 角色  用户/管理员
