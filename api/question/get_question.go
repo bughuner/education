@@ -18,6 +18,12 @@ func GetQuestionApi(c *gin.Context) {
 		common.SendResponse(c, errno.ErrParams, err.Error())
 		return
 	}
+	if req.PageNo == 0 {
+		req.PageNo = 1
+	}
+	if req.PageSize == 0 {
+		req.PageSize = 100
+	}
 	questionList, err := GetQuestionList(c, req)
 	if err != nil {
 		log.Printf("getQuestionList failed, req:%v, err:%v\n", req, err)
@@ -27,7 +33,7 @@ func GetQuestionApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, questionList)
 }
 
-func GetQuestionList(c *gin.Context, req *model_view.QuestionReq) ([]*model_view.QuestionResp, error) {
+func GetQuestionList(c *gin.Context, req *model_view.QuestionReq) (*model_view.QuestionResp, error) {
 	questionDb := database.Query.Question
 	sql := questionDb.WithContext(c)
 	if req.ID != "" {
@@ -42,12 +48,17 @@ func GetQuestionList(c *gin.Context, req *model_view.QuestionReq) ([]*model_view
 	if req.Damage != 0 {
 		sql = sql.Where(questionDb.Damage.Eq(req.Damage))
 	}
-	questionList, err := sql.Find()
+	total, err := sql.Count()
+	if err != nil {
+		log.Printf("questionDb count failed, err:%v\n", err)
+		return nil, util.BuildErrorInfo("questionDb count failed, err:%v", err)
+	}
+	questionList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("questionDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("questionDb query failed, err:%v", err)
 	}
-	res := make([]*model_view.QuestionResp, len(questionList))
+	questionResult := make([]*model_view.QuestionResult, len(questionList))
 	for i, item := range questionList {
 		questionSelect, err := getQuestionSelectByQuestionId(c, nil, item.ID)
 		if err != nil {
@@ -59,11 +70,15 @@ func GetQuestionList(c *gin.Context, req *model_view.QuestionReq) ([]*model_view
 			log.Printf("getQuestionAnswerByQuestionId failed, err:%v\n", err)
 			continue
 		}
-		res[i] = &model_view.QuestionResp{
+		questionResult[i] = &model_view.QuestionResult{
 			Question:       item,
 			QuestionSelect: questionSelect,
 			QuestionAnswer: questionAnswer,
 		}
+	}
+	res := &model_view.QuestionResp{
+		Total: total,
+		Data:  questionResult,
 	}
 	return res, nil
 }

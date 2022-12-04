@@ -10,9 +10,16 @@ type QuestionReq struct {
 	Damage   int64    `gorm:"column:damage;type:int" json:"damage"`              // 题目伤害
 	Select   []string `json:"select"`                                            // 选项内容
 	Answer   []string `json:"answer"`                                            // 答案
+	PageNo   int      `json:"page_no"`
+	PageSize int      `json:"page_size"`
 }
 
 type QuestionResp struct {
+	Total int64 `json:"total"`
+	Data  []*QuestionResult
+}
+
+type QuestionResult struct {
 	Question       *model.Question
 	QuestionSelect []*model.QuestionSelect
 	QuestionAnswer []*model.QuestionAnswer
