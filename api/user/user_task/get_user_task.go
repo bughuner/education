@@ -1,4 +1,4 @@
-package user
+package user_task
 
 import (
 	"education/api/task"
@@ -6,6 +6,7 @@ import (
 	errno "education/common/erron"
 	"education/database"
 	"education/model"
+	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -27,14 +28,14 @@ func GetUserTaskApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, taskList)
 }
 
-func checkGetUserTaskParam(id string) error{
+func checkGetUserTaskParam(id string) error {
 	if id == "" {
 		return util.BuildErrorInfo("参数错误")
 	}
 	return nil
 }
 
-func getUserTaskByUserId(c *gin.Context, userId string) ([]*model.Task, error) {
+func getUserTaskByUserId(c *gin.Context, userId string) ([]*model_view.UserTaskResp, error) {
 	userTaskDb := database.Query.UserTask
 	userTaskList, err := userTaskDb.WithContext(c).Where(userTaskDb.UserID.Eq(userId)).Find()
 	if err != nil {
@@ -50,8 +51,35 @@ func getUserTaskByUserId(c *gin.Context, userId string) ([]*model.Task, error) {
 	}
 	taskList, err := task.GetTaskById(c, taskIds)
 	if err != nil {
-		log.Printf("GetTaskById failed, userId:%v, err:%v",  userId, err)
-		return nil, util.BuildErrorInfo("GetTaskById failed, userId:%v, err:%v",  userId, err)
+		log.Printf("GetTaskById failed, userId:%v, err:%v", userId, err)
+		return nil, util.BuildErrorInfo("GetTaskById failed, userId:%v, err:%v", userId, err)
 	}
-	return taskList, nil
+	m := make(map[string]*model.Task)
+	for _, item := range taskList {
+		m[item.ID] = item
+	}
+	res := make([]*model_view.UserTaskResp, len(userTaskList))
+	for i, item := range userTaskList {
+		res[i] = &model_view.UserTaskResp{
+			ID:         item.ID,
+			UserID:     item.UserID,
+			TaskID:     item.TaskID,
+			Type:       item.Type,
+			IsFinished: item.IsFinished,
+			Count:      item.Count,
+		}
+		task, ok := m[item.TaskID]
+		if !ok {
+			log.Printf("task not found")
+			continue
+		}
+		res[i].Level = task.Level
+		res[i].Introduction = task.Introduction
+		res[i].Image = task.Image
+		res[i].Experience = task.Experience
+		res[i].Count = task.Coin
+		res[i].Num = task.Num
+		res[i].PreTask = task.PreTask
+	}
+	return res, nil
 }

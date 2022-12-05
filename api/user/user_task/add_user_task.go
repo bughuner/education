@@ -1,6 +1,7 @@
-package user
+package user_task
 
 import (
+	"education/api/task"
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
@@ -43,14 +44,27 @@ func checkAddUserTaskParam(userTask *model.UserTask) error {
 }
 
 func addUserTask(c *gin.Context, userId, taskId string) (*model.UserTask, error) {
+	taskList, err := task.GetTaskById(c, []string{taskId})
+	if err != nil {
+		log.Printf("GetTaskById failed, userId:%v, taskId:%v, err:%v\n", userId, taskId, err)
+		return nil, util.BuildErrorInfo("GetTaskById failed,, userId:%v, taskId:%v, err:%v", userId, taskId, err)
+	}
+	if len(taskList) == 0 {
+		log.Printf("task not exist, userId:%v, taskId:%v, err:%v\n", userId, taskId, err)
+		return nil, util.BuildErrorInfo("task not exist,, userId:%v, taskId:%v, err:%v", userId, taskId, err)
+	}
+	taskEntity := taskList[0]
 	userTask := &model.UserTask{
-		UserID: userId,
-		TaskID: taskId,
+		UserID:     userId,
+		TaskID:     taskId,
+		Type:       taskEntity.Type,
+		IsFinished: 0,
+		Count:      taskEntity.Num,
 	}
 	id := util.GetUUID()
 	userTask.ID = id
 	userTaskDb := database.Query.UserTask
-	err := userTaskDb.WithContext(c).Create(userTask)
+	err = userTaskDb.WithContext(c).Create(userTask)
 	if err != nil {
 		log.Printf("userTaskDb create failed, userId:%v, taskId:%v, err:%v", userId, taskId, err)
 		return nil, util.BuildErrorInfo("userTaskDb create failed, userId:%v, taskId:%v, err:%v", userId, taskId, err)

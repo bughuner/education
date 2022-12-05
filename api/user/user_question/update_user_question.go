@@ -1,4 +1,4 @@
-package user
+package user_question
 
 import (
 	"education/common"

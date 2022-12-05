@@ -8,9 +8,12 @@ const TableNameUserTask = "user_task"
 
 // UserTask mapped from table <user_task>
 type UserTask struct {
-	ID     string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"` // 用户持有任务id
-	UserID string `gorm:"column:user_id;type:varchar(255)" json:"user_id"`  // 用户id
-	TaskID string `gorm:"column:task_id;type:varchar(255)" json:"task_id"`  // 任务id
+	ID         string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`   // 用户持有任务id
+	UserID     string `gorm:"column:user_id;type:varchar(255)" json:"user_id"`    // 用户id
+	TaskID     string `gorm:"column:task_id;type:varchar(255)" json:"task_id"`    // 任务id
+	Type       int64  `gorm:"column:type;type:tinyint" json:"type"`               // 任务类型
+	IsFinished int64  `gorm:"column:is_finished;type:tinyint" json:"is_finished"` // 是否完成
+	Count      int64  `gorm:"column:count;type:int" json:"count"`                 // 个数
 }
 
 // TableName UserTask's table name

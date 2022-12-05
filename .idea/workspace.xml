@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/question/get_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/question/get_question.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/question.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/question.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/add_user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_question/add_user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/add_user_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_task/add_user_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/delete_user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_question/delete_user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/get_user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_question/get_user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/get_user_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_task/get_user_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/update_user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_question/update_user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user_task.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user_task.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/user_task.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/user_task.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +55,13 @@
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\E\product\goland\code\src\education\api\user\user_question" />
+      <recent name="D:\E\product\goland\code\src\education\api\user\user_task" />
+      <recent name="D:\E\product\goland\code\src\education\api" />
       <recent name="D:\E\product\goland\code\src\education" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\E\product\goland\code\src\education\api" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\E\product\goland\code\src\education" />
     </key>
   </component>
@@ -131,22 +139,22 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1670046193713" />
-    <state width="1506" height="74" key="GridCell.Tab.0.bottom" timestamp="1670136511151">
+    <state width="1506" height="175" key="GridCell.Tab.0.bottom" timestamp="1670231170010">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="74" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670136511151" />
-    <state width="1506" height="74" key="GridCell.Tab.0.center" timestamp="1670136511151">
+    <state width="1506" height="175" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670231170010" />
+    <state width="1506" height="175" key="GridCell.Tab.0.center" timestamp="1670231170010">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="74" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670136511151" />
-    <state width="1506" height="74" key="GridCell.Tab.0.left" timestamp="1670136511151">
+    <state width="1506" height="175" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670231170010" />
+    <state width="1506" height="175" key="GridCell.Tab.0.left" timestamp="1670231170010">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="74" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670136511151" />
-    <state width="1506" height="74" key="GridCell.Tab.0.right" timestamp="1670136511151">
+    <state width="1506" height="175" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670231170010" />
+    <state width="1506" height="175" key="GridCell.Tab.0.right" timestamp="1670231170010">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="74" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670136511151" />
+    <state width="1506" height="175" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670231170010" />
     <state width="1506" height="191" key="GridCell.Tab.1.bottom" timestamp="1670062636224">
       <screen x="0" y="0" width="1549" height="823" />
     </state>

@@ -8,6 +8,8 @@ import (
 	. "education/api/question"
 	. "education/api/shop"
 	. "education/api/user"
+	"education/api/user/user_question"
+	"education/api/user/user_task"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,12 +20,13 @@ func InitRouter(router *gin.Engine) {
 		user.POST("/login", LoginApi)
 		user.POST("/add_user", AddUserApi)
 		user.POST("/update_user", UpdateUserApi)
-		user.POST("/add_user_task", AddUserTaskApi)
-		user.GET("/get_user_task", GetUserTaskApi)
-		user.POST("/add_user_question", AddUserQuestionApi)
-		user.POST("/get_user_question", GetUserQuestionApi)
-		user.POST("/update_user_question", UpdateUserQuestionApi)
-		user.POST("/delete_user_question", DeleteUserQuestionApi)
+		user.POST("/add_user_task", user_task.AddUserTaskApi)
+		user.GET("/get_user_task", user_task.GetUserTaskApi)
+		user.POST("/update_user_task", user_task.UpdateUserTaskApi)
+		user.POST("/add_user_question", user_question.AddUserQuestionApi)
+		user.POST("/get_user_question", user_question.GetUserQuestionApi)
+		user.POST("/update_user_question", user_question.UpdateUserQuestionApi)
+		user.POST("/delete_user_question", user_question.DeleteUserQuestionApi)
 	}
 	monster := router.Group("monster")
 	{
