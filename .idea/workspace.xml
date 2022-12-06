@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/consts/const.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/monster/update_monster.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/monster/update_monster.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/task/get_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/task/get_task.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/user/add_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/add_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/user/update_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/update_user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/monster.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/monster.gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/npc.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/npc.gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/monster.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/monster.gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/npc.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/npc.gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/user.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/user.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/task/add_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/task/add_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/user_question/get_user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_question/get_user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/user_task/add_user_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_task/add_user_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/const/const.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model_view/user_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/user_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/task.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/task.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/task.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/task.gen.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +66,7 @@
       <recent name="D:\E\product\goland\code\src\education" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build education/cmd">
+  <component name="RunManager" selected="Go Build.go build education (1)">
     <configuration name="go build education (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="education" />
       <working_directory value="$PROJECT_DIR$" />
@@ -105,8 +103,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build education/cmd" />
         <item itemvalue="Go Build.go build education (1)" />
+        <item itemvalue="Go Build.go build education/cmd" />
       </list>
     </recent_temporary>
   </component>
@@ -142,46 +140,46 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1670046193713" />
-    <state width="1506" height="175" key="GridCell.Tab.0.bottom" timestamp="1670291321835">
+    <state width="1506" height="283" key="GridCell.Tab.0.bottom" timestamp="1670330738327">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="175" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670291321835" />
-    <state width="1506" height="175" key="GridCell.Tab.0.center" timestamp="1670291321834">
+    <state width="1506" height="283" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670330738327" />
+    <state width="1506" height="283" key="GridCell.Tab.0.center" timestamp="1670330738327">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="175" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670291321834" />
-    <state width="1506" height="175" key="GridCell.Tab.0.left" timestamp="1670291321834">
+    <state width="1506" height="283" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670330738326" />
+    <state width="1506" height="283" key="GridCell.Tab.0.left" timestamp="1670330738326">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="175" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670291321834" />
-    <state width="1506" height="175" key="GridCell.Tab.0.right" timestamp="1670291321835">
+    <state width="1506" height="283" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670330738326" />
+    <state width="1506" height="283" key="GridCell.Tab.0.right" timestamp="1670330738327">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="175" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670291321835" />
-    <state width="1506" height="191" key="GridCell.Tab.1.bottom" timestamp="1670062636224">
+    <state width="1506" height="283" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670330738327" />
+    <state width="1506" height="170" key="GridCell.Tab.1.bottom" timestamp="1670330212607">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="191" key="GridCell.Tab.1.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670062636224" />
-    <state width="1506" height="191" key="GridCell.Tab.1.center" timestamp="1670062636224">
+    <state width="1506" height="170" key="GridCell.Tab.1.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670330212607" />
+    <state width="1506" height="170" key="GridCell.Tab.1.center" timestamp="1670330212606">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="191" key="GridCell.Tab.1.center/0.0.1549.823@0.0.1549.823" timestamp="1670062636224" />
-    <state width="1506" height="191" key="GridCell.Tab.1.left" timestamp="1670062636224">
+    <state width="1506" height="170" key="GridCell.Tab.1.center/0.0.1549.823@0.0.1549.823" timestamp="1670330212606" />
+    <state width="1506" height="170" key="GridCell.Tab.1.left" timestamp="1670330212606">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="191" key="GridCell.Tab.1.left/0.0.1549.823@0.0.1549.823" timestamp="1670062636224" />
-    <state width="1506" height="191" key="GridCell.Tab.1.right" timestamp="1670062636224">
+    <state width="1506" height="170" key="GridCell.Tab.1.left/0.0.1549.823@0.0.1549.823" timestamp="1670330212606" />
+    <state width="1506" height="170" key="GridCell.Tab.1.right" timestamp="1670330212606">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="191" key="GridCell.Tab.1.right/0.0.1549.823@0.0.1549.823" timestamp="1670062636224" />
+    <state width="1506" height="170" key="GridCell.Tab.1.right/0.0.1549.823@0.0.1549.823" timestamp="1670330212606" />
     <state x="286" y="57" key="SettingsEditor" timestamp="1670046202897">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="286" y="57" key="SettingsEditor/0.0.1549.823@0.0.1549.823" timestamp="1670046202897" />
-    <state x="474" y="166" width="601" height="490" key="find.popup" timestamp="1670051655558">
+    <state x="474" y="166" width="601" height="490" key="find.popup" timestamp="1670319368153">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state x="474" y="166" width="601" height="490" key="find.popup/0.0.1549.823@0.0.1549.823" timestamp="1670051655558" />
+    <state x="474" y="166" width="601" height="490" key="find.popup/0.0.1549.823@0.0.1549.823" timestamp="1670319368153" />
     <state x="437" y="144" width="672" height="678" key="search.everywhere.popup" timestamp="1670288042785">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
@@ -204,6 +202,31 @@
           <url>file://$PROJECT_DIR$/api/question/add_question.go</url>
           <line>38</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/monster/monster_question/get_monster_question.go</url>
+          <line>26</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/monster/monster_question/get_monster_question.go</url>
+          <line>59</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/monster/monster_question/get_monster_question.go</url>
+          <line>66</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/user/user_task/add_user_task.go</url>
+          <line>57</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/user/user_task/add_user_task.go</url>
+          <line>65</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

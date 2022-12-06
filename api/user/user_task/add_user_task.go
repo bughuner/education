@@ -4,8 +4,10 @@ import (
 	"education/api/task"
 	"education/common"
 	errno "education/common/erron"
+	"education/consts"
 	"education/database"
 	"education/model"
+	"education/service"
 	"education/util"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -61,6 +63,18 @@ func addUserTask(c *gin.Context, userId, taskId string) (*model.UserTask, error)
 		IsFinished: 0,
 		Count:      taskEntity.Num,
 	}
+	if taskEntity.Type == consts.TaskTypeDoc {
+		docList, err := service.GetDocQuestionByDocId(c, []string{taskEntity.TargetID})
+		if err != nil {
+			log.Printf("service GetDocQuestionByDocId failed, err:%v\n", err)
+			return nil, util.BuildErrorInfo("service GetDocQuestionByDocId failed, err:%v\n", err)
+		}
+		if len(docList) == 0 {
+			return nil, util.BuildErrorInfo("关联的文章ID有错误")
+		}
+		userTask.Count = int64(len(docList))
+	}
+
 	id := util.GetUUID()
 	userTask.ID = id
 	userTaskDb := database.Query.UserTask

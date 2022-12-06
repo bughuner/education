@@ -18,7 +18,7 @@ func UpdateMonsterApi(c *gin.Context) {
 		common.SendResponse(c, errno.ErrParams, err.Error())
 		return
 	}
-	if err = checkUpdateParam(req); err != nil {
+	if err = checkUpdateParam(&req); err != nil {
 		log.Printf("checkParam failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
@@ -38,7 +38,7 @@ func UpdateMonsterApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, monster)
 }
 
-func checkUpdateParam(monster model.Monster) error {
+func checkUpdateParam(monster *model.Monster) error {
 	if monster.ID == "" {
 		return util.BuildErrorInfo("ID为空")
 	}

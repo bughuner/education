@@ -64,6 +64,7 @@ func addTask(c *gin.Context, task *model.Task) (*model.Task, error) {
 		Coin:         task.Coin,
 		Num:          task.Num,
 		PreTask:      task.PreTask,
+		TargetID:     task.TargetID,
 	}
 	err := taskDb.WithContext(c).Save(taskEntity)
 	if err != nil {

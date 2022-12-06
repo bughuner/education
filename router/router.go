@@ -2,8 +2,11 @@ package router
 
 import (
 	. "education/api/doc"
+	. "education/api/doc/doc_question"
 	. "education/api/exchange_gift"
+	. "education/api/form"
 	. "education/api/monster"
+	. "education/api/monster/monster_question"
 	. "education/api/npc"
 	. "education/api/question"
 	. "education/api/shop"
@@ -33,6 +36,10 @@ func InitRouter(router *gin.Engine) {
 	{
 		monster.GET("/get_monster", GetMonsterApi)
 		monster.POST("/update_monster", UpdateMonsterApi)
+		monster.POST("/get_monster_question", GetMonsterQuestionApi)
+		monster.POST("/add_monster_question", AddMonsterQuestionApi)
+		monster.POST("/update_monster_question", UpdateMonsterQuestionApi)
+		monster.POST("/delete_monster_question", DeleteMonsterQuestionApi)
 	}
 	question := router.Group("question")
 	{
@@ -59,6 +66,10 @@ func InitRouter(router *gin.Engine) {
 	{
 		doc.POST("/add_doc", AddDocApi)
 		doc.POST("/update_doc", UpdateDocApi)
+		doc.POST("/get_doc_question", GetDocQuestionApi)
+		doc.POST("/add_doc_question", AddDocQuestionApi)
+		doc.POST("/update_doc_question", UpdateDocQuestionApi)
+		doc.POST("/delete_doc_question", DeleteDocQuestionApi)
 	}
 	task := router.Group("/task")
 	{
@@ -66,6 +77,13 @@ func InitRouter(router *gin.Engine) {
 		task.POST("/get_task", GetTaskApi)
 		task.POST("update_task", UpdateTaskApi)
 		task.POST("/delete_task", DeleteTaskApi)
+	}
+	form := router.Group("/form")
+	{
+		form.POST("/add_form", AddFormApi)
+		form.POST("/get_form", GetFormApi)
+		form.POST("/update_form", UpdateFormApi)
+		form.POST("/delete_form", DeleteFormApi)
 	}
 
 }

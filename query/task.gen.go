@@ -36,6 +36,7 @@ func newTask(db *gorm.DB, opts ...gen.DOOption) task {
 	_task.Coin = field.NewInt64(tableName, "coin")
 	_task.Num = field.NewInt64(tableName, "num")
 	_task.PreTask = field.NewString(tableName, "pre_task")
+	_task.TargetID = field.NewString(tableName, "target_id")
 
 	_task.fillFieldMap()
 
@@ -55,6 +56,7 @@ type task struct {
 	Coin         field.Int64  // 金币奖励
 	Num          field.Int64  // 时间/打怪的个数
 	PreTask      field.String // 前序任务id
+	TargetID     field.String // 对象id  如果是阅读类，就是文章id,如果是文章类，就是文章id
 
 	fieldMap map[string]field.Expr
 }
@@ -80,6 +82,7 @@ func (t *task) updateTableName(table string) *task {
 	t.Coin = field.NewInt64(table, "coin")
 	t.Num = field.NewInt64(table, "num")
 	t.PreTask = field.NewString(table, "pre_task")
+	t.TargetID = field.NewString(table, "target_id")
 
 	t.fillFieldMap()
 
@@ -102,7 +105,7 @@ func (t *task) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (t *task) fillFieldMap() {
-	t.fieldMap = make(map[string]field.Expr, 9)
+	t.fieldMap = make(map[string]field.Expr, 10)
 	t.fieldMap["id"] = t.ID
 	t.fieldMap["type"] = t.Type
 	t.fieldMap["level"] = t.Level
@@ -112,6 +115,7 @@ func (t *task) fillFieldMap() {
 	t.fieldMap["coin"] = t.Coin
 	t.fieldMap["num"] = t.Num
 	t.fieldMap["pre_task"] = t.PreTask
+	t.fieldMap["target_id"] = t.TargetID
 }
 
 func (t task) clone(db *gorm.DB) task {

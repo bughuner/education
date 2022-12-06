@@ -17,6 +17,7 @@ type Task struct {
 	Coin         int64  `gorm:"column:coin;type:int" json:"coin"`                          // 金币奖励
 	Num          int64  `gorm:"column:num;type:int" json:"num"`                            // 时间/打怪的个数
 	PreTask      string `gorm:"column:pre_task;type:varchar(255)" json:"pre_task"`         // 前序任务id
+	TargetID     string `gorm:"column:target_id;type:varchar(255)" json:"target_id"`       // 对象id  如果是阅读类，就是文章id,如果是文章类，就是文章id
 }
 
 // TableName Task's table name

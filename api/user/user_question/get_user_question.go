@@ -38,7 +38,7 @@ func checkGetUserQuestionParams(req *model.UserQuestion) error {
 	return nil
 }
 
-func getUserQuestion(c *gin.Context, id, userId, questionId string) ([]*model_view.UserQuestionResp, error) {
+func getUserQuestion(c *gin.Context, id, userId, questionId string) (*model_view.UserQuestionResp, error) {
 	userQuestionDb := database.Query.UserQuestion
 	sql := userQuestionDb.WithContext(c)
 	if id != "" {
@@ -50,22 +50,31 @@ func getUserQuestion(c *gin.Context, id, userId, questionId string) ([]*model_vi
 	if questionId != "" {
 		sql = sql.Where(userQuestionDb.QuestionID.Eq(questionId))
 	}
-	userQuestionList, err := sql.Find()
+	total, err := sql.Count()
 	if err != nil {
-		log.Printf("userQuestionDb query failed, err:%v\n", err)
+		log.Printf("userQuestionDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userQuestionDb query failed, err:%v", err)
 	}
-	res := make([]*model_view.UserQuestionResp, len(userQuestionList))
+	userQuestionList, err := sql.Find()
+	if err != nil {
+		log.Printf("userQuestionDb count failed, err:%v\n", err)
+		return nil, util.BuildErrorInfo("userQuestionDb query failed, err:%v", err)
+	}
+	userQuestionRes := make([]*model_view.UserQuestionRes, len(userQuestionList))
 	for i, item := range userQuestionList {
-		questionList, err := question.GetQuestionList(c, &model_view.QuestionReq{ID: item.QuestionID})
-		if err != nil {
+		question, err := question.GetQuestionList(c, &model_view.QuestionReq{ID: item.QuestionID, PageNo: 1, PageSize: 1})
+		if err != nil || len(question.Data) > 0 {
 			log.Printf("GetQuestionList failed, err:%v", err)
 			continue
 		}
-		res[i] = &model_view.UserQuestionResp{
+		userQuestionRes[i] = &model_view.UserQuestionRes{
 			UserQuestion: item,
-			Data:         questionList,
+			Data:         question.Data[0],
 		}
+	}
+	res := &model_view.UserQuestionResp{
+		Total: total,
+		Data:  userQuestionRes,
 	}
 	return res, nil
 }
