@@ -28,11 +28,13 @@ func newMonster(db *gorm.DB, opts ...gen.DOOption) monster {
 	tableName := _monster.monsterDo.TableName()
 	_monster.ALL = field.NewAsterisk(tableName)
 	_monster.ID = field.NewString(tableName, "id")
+	_monster.Type = field.NewInt64(tableName, "type")
 	_monster.Name = field.NewString(tableName, "name")
 	_monster.Level = field.NewInt64(tableName, "level")
 	_monster.ExperienceValue = field.NewInt64(tableName, "experience_value")
 	_monster.Coin = field.NewInt64(tableName, "coin")
 	_monster.Hp = field.NewInt64(tableName, "hp")
+	_monster.Image = field.NewString(tableName, "image")
 
 	_monster.fillFieldMap()
 
@@ -44,11 +46,13 @@ type monster struct {
 
 	ALL             field.Asterisk
 	ID              field.String // 怪物的id
+	Type            field.Int64  // 类型
 	Name            field.String // 名称
 	Level           field.Int64  // 等级
 	ExperienceValue field.Int64  // 经验值
 	Coin            field.Int64  // 金币
 	Hp              field.Int64  // 生命值
+	Image           field.String // 头像
 
 	fieldMap map[string]field.Expr
 }
@@ -66,11 +70,13 @@ func (m monster) As(alias string) *monster {
 func (m *monster) updateTableName(table string) *monster {
 	m.ALL = field.NewAsterisk(table)
 	m.ID = field.NewString(table, "id")
+	m.Type = field.NewInt64(table, "type")
 	m.Name = field.NewString(table, "name")
 	m.Level = field.NewInt64(table, "level")
 	m.ExperienceValue = field.NewInt64(table, "experience_value")
 	m.Coin = field.NewInt64(table, "coin")
 	m.Hp = field.NewInt64(table, "hp")
+	m.Image = field.NewString(table, "image")
 
 	m.fillFieldMap()
 
@@ -93,13 +99,15 @@ func (m *monster) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (m *monster) fillFieldMap() {
-	m.fieldMap = make(map[string]field.Expr, 6)
+	m.fieldMap = make(map[string]field.Expr, 8)
 	m.fieldMap["id"] = m.ID
+	m.fieldMap["type"] = m.Type
 	m.fieldMap["name"] = m.Name
 	m.fieldMap["level"] = m.Level
 	m.fieldMap["experience_value"] = m.ExperienceValue
 	m.fieldMap["coin"] = m.Coin
 	m.fieldMap["hp"] = m.Hp
+	m.fieldMap["image"] = m.Image
 }
 
 func (m monster) clone(db *gorm.DB) monster {

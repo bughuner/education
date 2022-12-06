@@ -8,20 +8,24 @@ const TableNameUser = "user"
 
 // User mapped from table <user>
 type User struct {
-	ID       string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`  // 用户id
-	Account  string `gorm:"column:account;type:varchar(255)" json:"account"`   // 账号
-	Name     string `gorm:"column:name;type:varchar(255)" json:"name"`         // 姓名
-	Password string `gorm:"column:password;type:varchar(255)" json:"password"` // 密码
-	Role     string `gorm:"column:role;type:varchar(255)" json:"role"`         // 角色  用户/管理员
-	Level    int64  `gorm:"column:level;type:int" json:"level"`                // 等级
-	Career   string `gorm:"column:career;type:varchar(255)" json:"career"`     // 职业
-	Image    string `gorm:"column:image;type:varchar(255)" json:"image"`       // 头像
-	Coin     int64  `gorm:"column:coin;type:int" json:"coin"`                  // 金币
-	Credit   int64  `gorm:"column:credit;type:int" json:"credit"`              // 战斗积分
-	MapID    string `gorm:"column:map_id;type:varchar(255)" json:"map_id"`     // 地图id
-	Horizon  int64  `gorm:"column:horizon;type:int" json:"horizon"`            // 横坐标
-	Ordinate int64  `gorm:"column:ordinate;type:int" json:"ordinate"`          // 纵坐标
-	Hp       int64  `gorm:"column:hp;type:int" json:"hp"`                      // 生命值
+	ID               string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`             // 用户id
+	Account          string `gorm:"column:account;type:varchar(255)" json:"account"`              // 账号
+	Name             string `gorm:"column:name;type:varchar(255)" json:"name"`                    // 姓名
+	Password         string `gorm:"column:password;type:varchar(255)" json:"password"`            // 密码
+	Role             string `gorm:"column:role;type:varchar(255)" json:"role"`                    // 角色  用户/管理员
+	Level            int64  `gorm:"column:level;type:int" json:"level"`                           // 等级
+	Career           string `gorm:"column:career;type:varchar(255)" json:"career"`                // 职业
+	Image            string `gorm:"column:image;type:varchar(255)" json:"image"`                  // 头像
+	Coin             int64  `gorm:"column:coin;type:int" json:"coin"`                             // 金币
+	Credit           int64  `gorm:"column:credit;type:int" json:"credit"`                         // 战斗积分
+	MapID            string `gorm:"column:map_id;type:varchar(255)" json:"map_id"`                // 地图id
+	Horizon          int64  `gorm:"column:horizon;type:int" json:"horizon"`                       // 横坐标
+	Ordinate         int64  `gorm:"column:ordinate;type:int" json:"ordinate"`                     // 纵坐标
+	Hp               int64  `gorm:"column:hp;type:int" json:"hp"`                                 // 生命值
+	VictoryCount     int64  `gorm:"column:victory_count;type:int" json:"victory_count"`           // 胜场数
+	Merits           int64  `gorm:"column:merits;type:int" json:"merits"`                         // 功德数
+	FailCount        int64  `gorm:"column:fail_count;type:int" json:"fail_count"`                 // 败场数
+	KillMonsterCount int64  `gorm:"column:kill_monster_count;type:int" json:"kill_monster_count"` // 杀怪数
 }
 
 // TableName User's table name

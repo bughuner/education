@@ -7,6 +7,7 @@ import (
 	. "education/api/npc"
 	. "education/api/question"
 	. "education/api/shop"
+	. "education/api/task"
 	. "education/api/user"
 	"education/api/user/user_question"
 	"education/api/user/user_task"
@@ -58,6 +59,13 @@ func InitRouter(router *gin.Engine) {
 	{
 		doc.POST("/add_doc", AddDocApi)
 		doc.POST("/update_doc", UpdateDocApi)
+	}
+	task := router.Group("/task")
+	{
+		task.POST("/add_task", AddTaskApi)
+		task.POST("/get_task", GetTaskApi)
+		task.POST("update_task", UpdateTaskApi)
+		task.POST("/delete_task", DeleteTaskApi)
 	}
 
 }

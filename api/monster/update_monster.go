@@ -58,6 +58,12 @@ func updateMonster(c *gin.Context, monster *model.Monster, req *model.Monster) (
 	if req.Level != 0 {
 		monster.Level = req.Level
 	}
+	if req.Type != 0 {
+		monster.Type = req.Type
+	}
+	if req.Image != "" {
+		monster.Image = req.Image
+	}
 	monster.Hp = req.Hp
 
 	monsterDb := database.Query.Monster

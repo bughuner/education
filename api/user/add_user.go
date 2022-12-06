@@ -61,6 +61,8 @@ func addUser(c *gin.Context, user *model.User) (*model.User, error) {
 		return nil, util.BuildErrorInfo("账号已经存在")
 	}
 	user.ID = util.GetUUID()
+	user.Merits = 100
+	user.Hp = 100
 	err = userDb.WithContext(c).Create(user)
 	if err != nil {
 		log.Printf("userDb create user failed,err:%v\n", err)

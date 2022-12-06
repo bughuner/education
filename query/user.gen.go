@@ -41,6 +41,10 @@ func newUser(db *gorm.DB, opts ...gen.DOOption) user {
 	_user.Horizon = field.NewInt64(tableName, "horizon")
 	_user.Ordinate = field.NewInt64(tableName, "ordinate")
 	_user.Hp = field.NewInt64(tableName, "hp")
+	_user.VictoryCount = field.NewInt64(tableName, "victory_count")
+	_user.Merits = field.NewInt64(tableName, "merits")
+	_user.FailCount = field.NewInt64(tableName, "fail_count")
+	_user.KillMonsterCount = field.NewInt64(tableName, "kill_monster_count")
 
 	_user.fillFieldMap()
 
@@ -50,21 +54,25 @@ func newUser(db *gorm.DB, opts ...gen.DOOption) user {
 type user struct {
 	userDo userDo
 
-	ALL      field.Asterisk
-	ID       field.String // 用户id
-	Account  field.String // 账号
-	Name     field.String // 姓名
-	Password field.String // 密码
-	Role     field.String // 角色  用户/管理员
-	Level    field.Int64  // 等级
-	Career   field.String // 职业
-	Image    field.String // 头像
-	Coin     field.Int64  // 金币
-	Credit   field.Int64  // 战斗积分
-	MapID    field.String // 地图id
-	Horizon  field.Int64  // 横坐标
-	Ordinate field.Int64  // 纵坐标
-	Hp       field.Int64  // 生命值
+	ALL              field.Asterisk
+	ID               field.String // 用户id
+	Account          field.String // 账号
+	Name             field.String // 姓名
+	Password         field.String // 密码
+	Role             field.String // 角色  用户/管理员
+	Level            field.Int64  // 等级
+	Career           field.String // 职业
+	Image            field.String // 头像
+	Coin             field.Int64  // 金币
+	Credit           field.Int64  // 战斗积分
+	MapID            field.String // 地图id
+	Horizon          field.Int64  // 横坐标
+	Ordinate         field.Int64  // 纵坐标
+	Hp               field.Int64  // 生命值
+	VictoryCount     field.Int64  // 胜场数
+	Merits           field.Int64  // 功德数
+	FailCount        field.Int64  // 败场数
+	KillMonsterCount field.Int64  // 杀怪数
 
 	fieldMap map[string]field.Expr
 }
@@ -95,6 +103,10 @@ func (u *user) updateTableName(table string) *user {
 	u.Horizon = field.NewInt64(table, "horizon")
 	u.Ordinate = field.NewInt64(table, "ordinate")
 	u.Hp = field.NewInt64(table, "hp")
+	u.VictoryCount = field.NewInt64(table, "victory_count")
+	u.Merits = field.NewInt64(table, "merits")
+	u.FailCount = field.NewInt64(table, "fail_count")
+	u.KillMonsterCount = field.NewInt64(table, "kill_monster_count")
 
 	u.fillFieldMap()
 
@@ -117,7 +129,7 @@ func (u *user) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (u *user) fillFieldMap() {
-	u.fieldMap = make(map[string]field.Expr, 14)
+	u.fieldMap = make(map[string]field.Expr, 18)
 	u.fieldMap["id"] = u.ID
 	u.fieldMap["account"] = u.Account
 	u.fieldMap["name"] = u.Name
@@ -132,6 +144,10 @@ func (u *user) fillFieldMap() {
 	u.fieldMap["horizon"] = u.Horizon
 	u.fieldMap["ordinate"] = u.Ordinate
 	u.fieldMap["hp"] = u.Hp
+	u.fieldMap["victory_count"] = u.VictoryCount
+	u.fieldMap["merits"] = u.Merits
+	u.fieldMap["fail_count"] = u.FailCount
+	u.fieldMap["kill_monster_count"] = u.KillMonsterCount
 }
 
 func (u user) clone(db *gorm.DB) user {

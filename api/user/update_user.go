@@ -73,6 +73,10 @@ func updateUser(c *gin.Context, user *model.User, req *model.User) (*model.User,
 	if req.Level != 0 {
 		user.Level = req.Level
 	}
+	user.KillMonsterCount = req.KillMonsterCount
+	user.FailCount = req.FailCount
+	user.VictoryCount = req.VictoryCount
+	user.Merits = req.Merits
 	user.Coin = req.Coin
 	user.Credit = req.Credit
 	user.Hp = req.Hp

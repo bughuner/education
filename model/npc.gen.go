@@ -14,6 +14,7 @@ type Npc struct {
 	Introduction string `gorm:"column:introduction;type:varchar(255)" json:"introduction"` // 自我介绍
 	Horizon      int64  `gorm:"column:horizon;type:int" json:"horizon"`                    // 横坐标
 	Ordinate     int64  `gorm:"column:ordinate;type:int" json:"ordinate"`                  // 纵坐标
+	MapID        string `gorm:"column:map_id;type:varchar(255)" json:"map_id"`             // 地图id
 }
 
 // TableName Npc's table name
