@@ -5,7 +5,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -13,7 +12,7 @@ import (
 )
 
 func GetUserQuestionApi(c *gin.Context) {
-	var req model.UserQuestion
+	var req model_view.GetUserQuestionReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		log.Printf("ShouldBindJSON user_question failed, err:%v\n", err)
@@ -25,7 +24,7 @@ func GetUserQuestionApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	userQuestion, err := getUserQuestion(c, req.ID, req.UserID, req.QuestionID)
+	userQuestion, err := getUserQuestion(c, &req)
 	if err != nil {
 		log.Printf("updateUserQuestion failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.InternalServerError, err.Error())
@@ -34,21 +33,24 @@ func GetUserQuestionApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, userQuestion)
 }
 
-func checkGetUserQuestionParams(req *model.UserQuestion) error {
+func checkGetUserQuestionParams(req *model_view.GetUserQuestionReq) error {
+	if req.PageNo == 0 {
+		req.PageNo = 1
+	}
+	if req.PageSize == 0 {
+		req.PageSize = 100
+	}
 	return nil
 }
 
-func getUserQuestion(c *gin.Context, id, userId, questionId string) (*model_view.UserQuestionResp, error) {
+func getUserQuestion(c *gin.Context, req *model_view.GetUserQuestionReq) (*model_view.GetUserQuestionResp, error) {
 	userQuestionDb := database.Query.UserQuestion
 	sql := userQuestionDb.WithContext(c)
-	if id != "" {
-		sql = sql.Where(userQuestionDb.ID.Eq(id))
+	if req.ID != "" {
+		sql = sql.Where(userQuestionDb.ID.Eq(req.ID))
 	}
-	if userId != "" {
-		sql = sql.Where(userQuestionDb.UserID.Eq(userId))
-	}
-	if questionId != "" {
-		sql = sql.Where(userQuestionDb.QuestionID.Eq(questionId))
+	if req.UserID != "" {
+		sql = sql.Where(userQuestionDb.UserID.Eq(req.UserID))
 	}
 	total, err := sql.Count()
 	if err != nil {
@@ -63,7 +65,7 @@ func getUserQuestion(c *gin.Context, id, userId, questionId string) (*model_view
 	userQuestionRes := make([]*model_view.UserQuestionRes, len(userQuestionList))
 	for i, item := range userQuestionList {
 		question, err := question.GetQuestionList(c, &model_view.QuestionReq{ID: item.QuestionID, PageNo: 1, PageSize: 1})
-		if err != nil || len(question.Data) > 0 {
+		if err != nil || len(question.Data) == 0 {
 			log.Printf("GetQuestionList failed, err:%v", err)
 			continue
 		}
@@ -72,7 +74,7 @@ func getUserQuestion(c *gin.Context, id, userId, questionId string) (*model_view
 			Data:         question.Data[0],
 		}
 	}
-	res := &model_view.UserQuestionResp{
+	res := &model_view.GetUserQuestionResp{
 		Total: total,
 		Data:  userQuestionRes,
 	}

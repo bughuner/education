@@ -13,34 +13,55 @@ import (
 )
 
 func GetUserTaskApi(c *gin.Context) {
-	userId := c.Query("user_id")
-	if err := checkGetUserTaskParam(userId); err != nil {
-		log.Printf("checkParam failed, user_id:%v, err:%v\n", userId, err)
+	var req model_view.GetUserTaskReq
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		log.Printf("ShouldBindJSON GetUserTaskReq failed, err:%v\n", err)
+		common.SendResponse(c, errno.ErrParams, err.Error())
+		return
+	}
+	if err := checkGetUserTaskParams(&req); err != nil {
+		log.Printf("checkParam failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	taskList, err := getUserTaskByUserId(c, userId)
+	taskList, err := getUserTask(c, &req)
 	if err != nil {
-		log.Printf("getUserTaskByUserId failed, user_id:%v, err:%v\n", userId, err)
+		log.Printf("getUserTask failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
 		return
 	}
 	common.SendResponse(c, errno.OK, taskList)
 }
 
-func checkGetUserTaskParam(id string) error {
-	if id == "" {
-		return util.BuildErrorInfo("参数错误")
+func checkGetUserTaskParams(req *model_view.GetUserTaskReq) error {
+	if req.PageNo == 0 {
+		req.PageNo = 1
+	}
+	if req.PageSize == 0 {
+		req.PageSize = 100
 	}
 	return nil
 }
 
-func getUserTaskByUserId(c *gin.Context, userId string) ([]*model_view.UserTaskResp, error) {
+func getUserTask(c *gin.Context, req *model_view.GetUserTaskReq) (*model_view.GetUserTaskResp, error) {
 	userTaskDb := database.Query.UserTask
-	userTaskList, err := userTaskDb.WithContext(c).Where(userTaskDb.UserID.Eq(userId)).Find()
+	sql := userTaskDb.WithContext(c)
+	if req.ID != "" {
+		sql = sql.Where(userTaskDb.ID.Eq(req.ID))
+	}
+	if req.UserID != "" {
+		sql = sql.Where(userTaskDb.UserID.Eq(req.UserID))
+	}
+	total, err := sql.Count()
 	if err != nil {
-		log.Printf("userTaskDb query failed, userId:%v, err:%v\n", userId, err)
-		return nil, util.BuildErrorInfo("userTaskDb query failed, userId:%v, err:%v\n", userId, err)
+		log.Printf("userTaskDb count failed, err:%v\n", err)
+		return nil, util.BuildErrorInfo("userTaskDb query failed, err:%v", err)
+	}
+	userTaskList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	if err != nil {
+		log.Printf("userTaskDb count failed, err:%v\n", err)
+		return nil, util.BuildErrorInfo("userTaskDb query failed, err:%v", err)
 	}
 	if len(userTaskList) == 0 {
 		return nil, nil
@@ -51,16 +72,16 @@ func getUserTaskByUserId(c *gin.Context, userId string) ([]*model_view.UserTaskR
 	}
 	taskList, err := task.GetTaskById(c, taskIds)
 	if err != nil {
-		log.Printf("GetTaskById failed, userId:%v, err:%v", userId, err)
-		return nil, util.BuildErrorInfo("GetTaskById failed, userId:%v, err:%v", userId, err)
+		log.Printf("GetTaskById failed, taskIds:%v, err:%v\n", taskIds, err)
+		return nil, util.BuildErrorInfo("GetTaskById failed, taskIds:%v, err:%v", taskIds, err)
 	}
 	m := make(map[string]*model.Task)
 	for _, item := range taskList {
 		m[item.ID] = item
 	}
-	res := make([]*model_view.UserTaskResp, len(userTaskList))
+	userTasks := make([]*model_view.UserTaskResp, len(userTaskList))
 	for i, item := range userTaskList {
-		res[i] = &model_view.UserTaskResp{
+		userTasks[i] = &model_view.UserTaskResp{
 			ID:         item.ID,
 			UserID:     item.UserID,
 			TaskID:     item.TaskID,
@@ -73,13 +94,17 @@ func getUserTaskByUserId(c *gin.Context, userId string) ([]*model_view.UserTaskR
 			log.Printf("task not found")
 			continue
 		}
-		res[i].Level = task.Level
-		res[i].Introduction = task.Introduction
-		res[i].Image = task.Image
-		res[i].Experience = task.Experience
-		res[i].Count = task.Coin
-		res[i].Num = task.Num
-		res[i].PreTask = task.PreTask
+		userTasks[i].Level = task.Level
+		userTasks[i].Introduction = task.Introduction
+		userTasks[i].Image = task.Image
+		userTasks[i].Experience = task.Experience
+		userTasks[i].Count = task.Coin
+		userTasks[i].Num = task.Num
+		userTasks[i].PreTask = task.PreTask
+	}
+	res := &model_view.GetUserTaskResp{
+		Total: total,
+		Data:  userTasks,
 	}
 	return res, nil
 }

@@ -8,6 +8,8 @@ import (
 	. "education/api/monster"
 	. "education/api/monster/monster_question"
 	. "education/api/npc"
+	. "education/api/npc/npc_task"
+	. "education/api/plat"
 	. "education/api/question"
 	. "education/api/shop"
 	. "education/api/task"
@@ -25,7 +27,7 @@ func InitRouter(router *gin.Engine) {
 		user.POST("/add_user", AddUserApi)
 		user.POST("/update_user", UpdateUserApi)
 		user.POST("/add_user_task", user_task.AddUserTaskApi)
-		user.GET("/get_user_task", user_task.GetUserTaskApi)
+		user.POST("/get_user_task", user_task.GetUserTaskApi)
 		user.POST("/update_user_task", user_task.UpdateUserTaskApi)
 		user.POST("/add_user_question", user_question.AddUserQuestionApi)
 		user.POST("/get_user_question", user_question.GetUserQuestionApi)
@@ -34,7 +36,7 @@ func InitRouter(router *gin.Engine) {
 	}
 	monster := router.Group("monster")
 	{
-		monster.GET("/get_monster", GetMonsterApi)
+		monster.POST("/get_monster", GetMonsterApi)
 		monster.POST("/update_monster", UpdateMonsterApi)
 		monster.POST("/get_monster_question", GetMonsterQuestionApi)
 		monster.POST("/add_monster_question", AddMonsterQuestionApi)
@@ -48,11 +50,15 @@ func InitRouter(router *gin.Engine) {
 	}
 	npc := router.Group("npc")
 	{
-		npc.GET("/get_npc_task", GetNPCTaskApi)
+		npc.POST("/get_npc_task", GetNPCTaskApi)
+		npc.POST("/get_npc", GetNpcApi)
+		npc.POST("/add_npc", AddNpcApi)
+		npc.POST("/update_npc", UpdateNpcApi)
+		npc.POST("/delete_npc", DeleteNpcApi)
 	}
 	shop := router.Group("shop")
 	{
-		shop.GET("/get_gift_count", GetGiftCountApi)
+		shop.POST("/get_gift_count", GetGiftCountApi)
 		shop.POST("/add_gift_count", AddGiftCountApi)
 		shop.POST("/update_gift_count", UpdateGiftCountApi)
 	}
@@ -85,5 +91,8 @@ func InitRouter(router *gin.Engine) {
 		form.POST("/update_form", UpdateFormApi)
 		form.POST("/delete_form", DeleteFormApi)
 	}
-
+	plat := router.Group("/plat")
+	{
+		plat.POST("/get_plat", GetPlatApi)
+	}
 }

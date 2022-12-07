@@ -5,6 +5,7 @@ import (
 	errno "education/common/erron"
 	"education/database"
 	"education/model"
+	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -23,13 +24,18 @@ func UpdateMonsterApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	oldMonster, err := getMonsterInfo(c, req.ID)
+	oldMonster, err := getMonsterInfo(c, &model_view.GetMonsterReq{ID: req.ID})
 	if err != nil {
 		log.Printf("getMonsterInfo failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
 		return
 	}
-	monster, err := updateMonster(c, oldMonster, &req)
+	if len(oldMonster.Data) == 0 {
+		log.Printf("monster not exist")
+		common.SendResponse(c, errno.OperationErr, err.Error())
+		return
+	}
+	monster, err := updateMonster(c, oldMonster.Data[0], &req)
 	if err != nil {
 		log.Printf("updateMonster failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())

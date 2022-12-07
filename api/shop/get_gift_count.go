@@ -19,45 +19,55 @@ type ShopGiftCountInfo struct {
 
 // 获取奖品详情
 func GetGiftCountApi(c *gin.Context) {
-	pageNo := c.Query("page_no")
-	pageSize := c.Query("page_size")
-	pageNoInt, err := util.ConvertStringToInt(pageNo)
+	var req model_view.GetGiftCountReq
+	err := c.ShouldBindJSON(&req)
 	if err != nil {
-		log.Printf("数据转换错误")
+		log.Printf("ShouldBindJSON GetGiftCountReq failed, err:%v\n", err)
+		common.SendResponse(c, errno.ErrParams, err.Error())
+		return
 	}
-	pageSizeInt, err := util.ConvertStringToInt(pageSize)
+	if err := checkGetGiftCountParams(&req); err != nil {
+		log.Printf("checkParam failed, req:%v, err:%v\n", req, err)
+		common.SendResponse(c, errno.NoParams, err.Error())
+		return
+	}
+	shopGiftCountList, err := getGiftCount(c, &req)
 	if err != nil {
-		log.Printf("数据转换错误")
-	}
-	if pageNoInt == 0 || pageSizeInt == 0 {
-		pageNoInt = 1
-		pageSizeInt = 100
-	}
-	shopGiftCountList, total, err := getGiftCount(c, pageNoInt, pageSizeInt)
-	if err != nil {
-		log.Printf("getGiftCount failed, pageNo:%v, pageSize:%v, err:%v", pageNoInt, pageSizeInt, err)
+		log.Printf("getGiftCount failed, req:%v, err:%v", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
 		return
 	}
-	shopGiftCountInfo := &ShopGiftCountInfo{
-		ShopGiftCountList: shopGiftCountList,
-		total:             total,
-	}
-	common.SendResponse(c, errno.OK, shopGiftCountInfo)
+	common.SendResponse(c, errno.OK, shopGiftCountList)
 }
 
-func getGiftCount(c *gin.Context, pageNo, pageSize int) ([]*model_view.ShopGiftCount, int64, error) {
+func checkGetGiftCountParams(req *model_view.GetGiftCountReq) error {
+	if req.PageNo == 0 {
+		req.PageNo = 1
+	}
+	if req.PageSize == 0 {
+		req.PageSize = 100
+	}
+	return nil
+}
+
+func getGiftCount(c *gin.Context, req *model_view.GetGiftCountReq) (*model_view.GetGiftCountResp, error) {
 	shopDb := database.Query.Shop
 	sql := shopDb.WithContext(c)
+	if req.ID != "" {
+		sql = sql.Where(shopDb.ID.Eq(req.ID))
+	}
+	if req.GiftID != "" {
+		sql = sql.Where(shopDb.GiftID.Eq(req.GiftID))
+	}
 	total, err := sql.Count()
 	if err != nil {
-		log.Printf("shopDb count failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
-		return nil, 0, util.BuildErrorInfo("shopDb count failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
+		log.Printf("shopDb count failed, req:%v, err:%v\n", req, err)
+		return nil, util.BuildErrorInfo("shopDb count failed, req:%v, err:%v", req, err)
 	}
-	shopList, err := sql.Offset(pageNo - 1).Limit(pageSize).Find()
+	shopList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
 	if err != nil {
-		log.Printf("shopDb query failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
-		return nil, 0, util.BuildErrorInfo("shopDb query failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
+		log.Printf("shopDb query failed, req:%v, err:%v\n", req, err)
+		return nil, util.BuildErrorInfo("shopDb query failed, req:%v, err:%v\n", req, err)
 	}
 	giftIds := make([]string, len(shopList))
 	for i, item := range shopList {
@@ -65,8 +75,8 @@ func getGiftCount(c *gin.Context, pageNo, pageSize int) ([]*model_view.ShopGiftC
 	}
 	giftList, err := gift.GetGiftById(c, giftIds)
 	if err != nil {
-		log.Printf("GetGiftById failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
-		return nil, 0, util.BuildErrorInfo("shopDb GetGiftById failed, pageNo:%v, pageSize:%v, err:%v", pageNo, pageSize, err)
+		log.Printf("GetGiftById failed, giftIds:%v, err:%v\n", giftIds, err)
+		return nil, util.BuildErrorInfo("GetGiftById failed, giftIds:%v, err:%v", giftIds, err)
 	}
 	giftListMap := make(map[string]*model.Gift)
 	for _, item := range giftList {
@@ -89,5 +99,9 @@ func getGiftCount(c *gin.Context, pageNo, pageSize int) ([]*model_view.ShopGiftC
 			Coin:         gift.Coin,
 		}
 	}
-	return shopGiftCount, total, nil
+	res := &model_view.GetGiftCountResp{
+		Total: total,
+		Data:  shopGiftCount,
+	}
+	return res, nil
 }

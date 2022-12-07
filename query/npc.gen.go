@@ -34,6 +34,7 @@ func newNpc(db *gorm.DB, opts ...gen.DOOption) npc {
 	_npc.Horizon = field.NewInt64(tableName, "horizon")
 	_npc.Ordinate = field.NewInt64(tableName, "ordinate")
 	_npc.MapID = field.NewString(tableName, "map_id")
+	_npc.Type = field.NewInt64(tableName, "type")
 
 	_npc.fillFieldMap()
 
@@ -51,6 +52,7 @@ type npc struct {
 	Horizon      field.Int64  // 横坐标
 	Ordinate     field.Int64  // 纵坐标
 	MapID        field.String // 地图id
+	Type         field.Int64  // 类型
 
 	fieldMap map[string]field.Expr
 }
@@ -74,6 +76,7 @@ func (n *npc) updateTableName(table string) *npc {
 	n.Horizon = field.NewInt64(table, "horizon")
 	n.Ordinate = field.NewInt64(table, "ordinate")
 	n.MapID = field.NewString(table, "map_id")
+	n.Type = field.NewInt64(table, "type")
 
 	n.fillFieldMap()
 
@@ -96,7 +99,7 @@ func (n *npc) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (n *npc) fillFieldMap() {
-	n.fieldMap = make(map[string]field.Expr, 7)
+	n.fieldMap = make(map[string]field.Expr, 8)
 	n.fieldMap["id"] = n.ID
 	n.fieldMap["name"] = n.Name
 	n.fieldMap["image"] = n.Image
@@ -104,6 +107,7 @@ func (n *npc) fillFieldMap() {
 	n.fieldMap["horizon"] = n.Horizon
 	n.fieldMap["ordinate"] = n.Ordinate
 	n.fieldMap["map_id"] = n.MapID
+	n.fieldMap["type"] = n.Type
 }
 
 func (n npc) clone(db *gorm.DB) npc {

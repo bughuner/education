@@ -4,10 +4,10 @@
 
 package model
 
-const TableNameMap = "map"
+const TableNamePlat = "plat"
 
-// Map mapped from table <map>
-type Map struct {
+// Plat mapped from table <plat>
+type Plat struct {
 	ID     string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`
 	Name   string `gorm:"column:name;type:varchar(255)" json:"name"`   // 名称
 	Image  string `gorm:"column:image;type:varchar(255)" json:"image"` // 图片
@@ -15,7 +15,7 @@ type Map struct {
 	Height int64  `gorm:"column:height;type:int" json:"height"`        // 高
 }
 
-// TableName Map's table name
-func (*Map) TableName() string {
-	return TableNameMap
+// TableName Plat's table name
+func (*Plat) TableName() string {
+	return TableNamePlat
 }

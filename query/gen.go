@@ -26,6 +26,7 @@ var (
 	MonsterQuestion *monsterQuestion
 	Npc             *npc
 	NpcTask         *npcTask
+	Plat            *plat
 	Question        *question
 	QuestionAnswer  *questionAnswer
 	QuestionSelect  *questionSelect
@@ -47,6 +48,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	MonsterQuestion = &Q.MonsterQuestion
 	Npc = &Q.Npc
 	NpcTask = &Q.NpcTask
+	Plat = &Q.Plat
 	Question = &Q.Question
 	QuestionAnswer = &Q.QuestionAnswer
 	QuestionSelect = &Q.QuestionSelect
@@ -69,6 +71,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 		MonsterQuestion: newMonsterQuestion(db, opts...),
 		Npc:             newNpc(db, opts...),
 		NpcTask:         newNpcTask(db, opts...),
+		Plat:            newPlat(db, opts...),
 		Question:        newQuestion(db, opts...),
 		QuestionAnswer:  newQuestionAnswer(db, opts...),
 		QuestionSelect:  newQuestionSelect(db, opts...),
@@ -92,6 +95,7 @@ type Query struct {
 	MonsterQuestion monsterQuestion
 	Npc             npc
 	NpcTask         npcTask
+	Plat            plat
 	Question        question
 	QuestionAnswer  questionAnswer
 	QuestionSelect  questionSelect
@@ -116,6 +120,7 @@ func (q *Query) clone(db *gorm.DB) *Query {
 		MonsterQuestion: q.MonsterQuestion.clone(db),
 		Npc:             q.Npc.clone(db),
 		NpcTask:         q.NpcTask.clone(db),
+		Plat:            q.Plat.clone(db),
 		Question:        q.Question.clone(db),
 		QuestionAnswer:  q.QuestionAnswer.clone(db),
 		QuestionSelect:  q.QuestionSelect.clone(db),
@@ -147,6 +152,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 		MonsterQuestion: q.MonsterQuestion.replaceDB(db),
 		Npc:             q.Npc.replaceDB(db),
 		NpcTask:         q.NpcTask.replaceDB(db),
+		Plat:            q.Plat.replaceDB(db),
 		Question:        q.Question.replaceDB(db),
 		QuestionAnswer:  q.QuestionAnswer.replaceDB(db),
 		QuestionSelect:  q.QuestionSelect.replaceDB(db),
@@ -168,6 +174,7 @@ type queryCtx struct {
 	MonsterQuestion IMonsterQuestionDo
 	Npc             INpcDo
 	NpcTask         INpcTaskDo
+	Plat            IPlatDo
 	Question        IQuestionDo
 	QuestionAnswer  IQuestionAnswerDo
 	QuestionSelect  IQuestionSelectDo
@@ -189,6 +196,7 @@ func (q *Query) WithContext(ctx context.Context) *queryCtx {
 		MonsterQuestion: q.MonsterQuestion.WithContext(ctx),
 		Npc:             q.Npc.WithContext(ctx),
 		NpcTask:         q.NpcTask.WithContext(ctx),
+		Plat:            q.Plat.WithContext(ctx),
 		Question:        q.Question.WithContext(ctx),
 		QuestionAnswer:  q.QuestionAnswer.WithContext(ctx),
 		QuestionSelect:  q.QuestionSelect.WithContext(ctx),

@@ -11,7 +11,7 @@ import (
 )
 
 func GetQuestionApi(c *gin.Context) {
-	var req *model_view.QuestionReq
+	var req model_view.QuestionReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		log.Printf("ShouldBindJSON question_req failed, err:%v\n", err)
@@ -24,7 +24,7 @@ func GetQuestionApi(c *gin.Context) {
 	if req.PageSize == 0 {
 		req.PageSize = 100
 	}
-	questionList, err := GetQuestionList(c, req)
+	questionList, err := GetQuestionList(c, &req)
 	if err != nil {
 		log.Printf("getQuestionList failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
