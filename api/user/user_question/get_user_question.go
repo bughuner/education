@@ -65,7 +65,7 @@ func getUserQuestion(c *gin.Context, req *model_view.GetUserQuestionReq) (*model
 	userQuestionRes := make([]*model_view.UserQuestionRes, len(userQuestionList))
 	for i, item := range userQuestionList {
 		question, err := question.GetQuestionList(c, &model_view.QuestionReq{ID: item.QuestionID, PageNo: 1, PageSize: 1})
-		if err != nil || || question == nil || len(question.Data) == 0 {
+		if err != nil || question == nil || len(question.Data) == 0 {
 			log.Printf("GetQuestionList failed, err:%v", err)
 			continue
 		}
