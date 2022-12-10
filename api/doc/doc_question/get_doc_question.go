@@ -65,7 +65,7 @@ func getDocQuestion(c *gin.Context, req *model_view.GetDocQuestionReq) (*model_v
 	getDocQuestionRes := make([]*model_view.GetDocQuestionRes, len(docQuestionList))
 	for i, item := range docQuestionList {
 		question, err := question.GetQuestionList(c, &model_view.QuestionReq{ID: item.QuestionID, PageNo: 1, PageSize: 1})
-		if err != nil && len(question.Data) > 0 {
+		if err != nil || len(question.Data) == 0 {
 			log.Printf("GetQuestionList failed, err:%v", err)
 			continue
 		}
