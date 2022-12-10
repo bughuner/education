@@ -36,8 +36,10 @@ func InitRouter(router *gin.Engine) {
 	}
 	monster := router.Group("monster")
 	{
+		monster.POST("/add_monster", AddMonsterApi)
 		monster.POST("/get_monster", GetMonsterApi)
 		monster.POST("/update_monster", UpdateMonsterApi)
+		monster.POST("/delete_monster", DeleteMonsterApi)
 		monster.POST("/get_monster_question", GetMonsterQuestionApi)
 		monster.POST("/add_monster_question", AddMonsterQuestionApi)
 		monster.POST("/update_monster_question", UpdateMonsterQuestionApi)
@@ -71,6 +73,7 @@ func InitRouter(router *gin.Engine) {
 	doc := router.Group("/doc")
 	{
 		doc.POST("/add_doc", AddDocApi)
+		doc.POST("/get_doc", GetDocApi)
 		doc.POST("/update_doc", UpdateDocApi)
 		doc.POST("/get_doc_question", GetDocQuestionApi)
 		doc.POST("/add_doc_question", AddDocQuestionApi)

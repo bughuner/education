@@ -18,3 +18,7 @@ type GetMonsterResp struct {
 	Total int64 `json:"total"`
 	Data  []*model.Monster
 }
+
+type DeleteMonsterReq struct {
+	MonsterIds []string `json:"monster_ids"`
+}

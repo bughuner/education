@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/doc/doc_question/get_doc_question.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/doc/doc_question/get_doc_question.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model_view/monster.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/monster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +121,10 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="526" y="220" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1549.823@0.0.1549.823" timestamp="1669888469262" />
+    <state x="530" y="120" key="#xdebugger.evaluate" timestamp="1670666033501">
+      <screen x="0" y="0" width="1549" height="823" />
+    </state>
+    <state x="530" y="120" key="#xdebugger.evaluate/0.0.1549.823@0.0.1549.823" timestamp="1670666033501" />
     <state x="414" y="209" key="EditFileWatcherDialog" timestamp="1670046199664">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
@@ -132,38 +137,38 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1670419739074" />
-    <state width="1506" height="242" key="GridCell.Tab.0.bottom" timestamp="1670647619477">
+    <state width="1506" height="172" key="GridCell.Tab.0.bottom" timestamp="1670666551566">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670647619477" />
-    <state width="1506" height="242" key="GridCell.Tab.0.center" timestamp="1670647619477">
+    <state width="1506" height="172" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670666551566" />
+    <state width="1506" height="172" key="GridCell.Tab.0.center" timestamp="1670666551562">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670647619477" />
-    <state width="1506" height="242" key="GridCell.Tab.0.left" timestamp="1670647619477">
+    <state width="1506" height="172" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670666551562" />
+    <state width="1506" height="172" key="GridCell.Tab.0.left" timestamp="1670666551562">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670647619477" />
-    <state width="1506" height="242" key="GridCell.Tab.0.right" timestamp="1670647619477">
+    <state width="1506" height="172" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670666551562" />
+    <state width="1506" height="172" key="GridCell.Tab.0.right" timestamp="1670666551565">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670647619477" />
-    <state width="1506" height="242" key="GridCell.Tab.1.bottom" timestamp="1670647630738">
+    <state width="1506" height="172" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670666551565" />
+    <state width="1506" height="242" key="GridCell.Tab.1.bottom" timestamp="1670666252478">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.1.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670647630738" />
-    <state width="1506" height="242" key="GridCell.Tab.1.center" timestamp="1670647630738">
+    <state width="1506" height="242" key="GridCell.Tab.1.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670666252478" />
+    <state width="1506" height="242" key="GridCell.Tab.1.center" timestamp="1670666252474">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.1.center/0.0.1549.823@0.0.1549.823" timestamp="1670647630738" />
-    <state width="1506" height="242" key="GridCell.Tab.1.left" timestamp="1670647630738">
+    <state width="1506" height="242" key="GridCell.Tab.1.center/0.0.1549.823@0.0.1549.823" timestamp="1670666252474" />
+    <state width="1506" height="242" key="GridCell.Tab.1.left" timestamp="1670666252474">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.1.left/0.0.1549.823@0.0.1549.823" timestamp="1670647630738" />
-    <state width="1506" height="242" key="GridCell.Tab.1.right" timestamp="1670647630738">
+    <state width="1506" height="242" key="GridCell.Tab.1.left/0.0.1549.823@0.0.1549.823" timestamp="1670666252474" />
+    <state width="1506" height="242" key="GridCell.Tab.1.right" timestamp="1670666252478">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="242" key="GridCell.Tab.1.right/0.0.1549.823@0.0.1549.823" timestamp="1670647630738" />
+    <state width="1506" height="242" key="GridCell.Tab.1.right/0.0.1549.823@0.0.1549.823" timestamp="1670666252478" />
     <state x="286" y="57" key="SettingsEditor" timestamp="1670046202897">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
@@ -221,9 +226,14 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/api/doc/doc_question/get_doc_question.go</url>
-          <line>59</line>
+          <url>file://$PROJECT_DIR$/api/doc/get_doc.go</url>
+          <line>54</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/api/doc/get_doc.go</url>
+          <line>51</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
