@@ -51,7 +51,7 @@ func addUserTask(c *gin.Context, userId, taskId string) (*model.UserTask, error)
 		log.Printf("GetTaskById failed, userId:%v, taskId:%v, err:%v\n", userId, taskId, err)
 		return nil, util.BuildErrorInfo("GetTaskById failed,, userId:%v, taskId:%v, err:%v", userId, taskId, err)
 	}
-	if len(taskList) == 0 {
+	if taskList == nil || len(taskList) == 0 {
 		log.Printf("task not exist, userId:%v, taskId:%v, err:%v\n", userId, taskId, err)
 		return nil, util.BuildErrorInfo("task not exist,, userId:%v, taskId:%v, err:%v", userId, taskId, err)
 	}
@@ -69,7 +69,7 @@ func addUserTask(c *gin.Context, userId, taskId string) (*model.UserTask, error)
 			log.Printf("service GetDocQuestionByDocId failed, err:%v\n", err)
 			return nil, util.BuildErrorInfo("service GetDocQuestionByDocId failed, err:%v\n", err)
 		}
-		if len(docList) == 0 {
+		if docList == nil || len(docList) == 0 {
 			return nil, util.BuildErrorInfo("关联的文章ID有错误")
 		}
 		userTask.Count = int64(len(docList))

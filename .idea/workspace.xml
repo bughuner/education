@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/monster.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/monster.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-    </list>
+    <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,22 +133,22 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1670419739074" />
-    <state width="1506" height="172" key="GridCell.Tab.0.bottom" timestamp="1670666551566">
+    <state width="1506" height="201" key="GridCell.Tab.0.bottom" timestamp="1670666872478">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670666551566" />
-    <state width="1506" height="172" key="GridCell.Tab.0.center" timestamp="1670666551562">
+    <state width="1506" height="201" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670666872478" />
+    <state width="1506" height="201" key="GridCell.Tab.0.center" timestamp="1670666872477">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670666551562" />
-    <state width="1506" height="172" key="GridCell.Tab.0.left" timestamp="1670666551562">
+    <state width="1506" height="201" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670666872477" />
+    <state width="1506" height="201" key="GridCell.Tab.0.left" timestamp="1670666872477">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670666551562" />
-    <state width="1506" height="172" key="GridCell.Tab.0.right" timestamp="1670666551565">
+    <state width="1506" height="201" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670666872477" />
+    <state width="1506" height="201" key="GridCell.Tab.0.right" timestamp="1670666872477">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670666551565" />
+    <state width="1506" height="201" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670666872477" />
     <state width="1506" height="242" key="GridCell.Tab.1.bottom" timestamp="1670666252478">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
@@ -173,10 +169,10 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="286" y="57" key="SettingsEditor/0.0.1549.823@0.0.1549.823" timestamp="1670046202897" />
-    <state x="474" y="166" width="601" height="490" key="find.popup" timestamp="1670319368153">
+    <state x="474" y="166" width="601" height="490" key="find.popup" timestamp="1670666917922">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state x="474" y="166" width="601" height="490" key="find.popup/0.0.1549.823@0.0.1549.823" timestamp="1670319368153" />
+    <state x="474" y="166" width="601" height="490" key="find.popup/0.0.1549.823@0.0.1549.823" timestamp="1670666917922" />
     <state x="437" y="144" width="672" height="678" key="search.everywhere.popup" timestamp="1670288042785">
       <screen x="0" y="0" width="1549" height="823" />
     </state>

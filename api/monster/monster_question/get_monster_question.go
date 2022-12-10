@@ -65,7 +65,7 @@ func getMonsterQuestion(c *gin.Context, req *model_view.GetMonsterQuestionReq) (
 	getMonsterQuestionRes := make([]*model_view.GetMonsterQuestionRes, len(monsterQuestionList))
 	for i, item := range monsterQuestionList {
 		question, err := question.GetQuestionList(c, &model_view.QuestionReq{ID: item.QuestionID, PageNo: 1, PageSize: 1})
-		if err != nil && len(question.Data) > 0 {
+		if err != nil || question == nil || len(question.Data) == 0 {
 			log.Printf("GetQuestionList failed, err:%v", err)
 			continue
 		}

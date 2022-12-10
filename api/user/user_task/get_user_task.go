@@ -63,7 +63,7 @@ func getUserTask(c *gin.Context, req *model_view.GetUserTaskReq) (*model_view.Ge
 		log.Printf("userTaskDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userTaskDb query failed, err:%v", err)
 	}
-	if len(userTaskList) == 0 {
+	if userTaskList == nil || len(userTaskList) == 0 {
 		return nil, nil
 	}
 	taskIds := make([]string, len(userTaskList))

@@ -24,13 +24,13 @@ func UpdateMonsterApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	oldMonster, err := getMonsterInfo(c, &model_view.GetMonsterReq{ID: req.ID})
+	oldMonster, err := getMonsterInfo(c, &model_view.GetMonsterReq{ID: req.ID, PageNo: 1, PageSize: 1})
 	if err != nil {
 		log.Printf("getMonsterInfo failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
 		return
 	}
-	if len(oldMonster.Data) == 0 {
+	if oldMonster == nil || len(oldMonster.Data) == 0 {
 		log.Printf("monster not exist")
 		common.SendResponse(c, errno.OperationErr, err.Error())
 		return
