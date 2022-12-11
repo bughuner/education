@@ -16,3 +16,7 @@ type GetPlatResp struct {
 	Total int64 `json:"total"`
 	Data  []*model.Plat
 }
+
+type DeletePlatReq struct {
+	PlatIds []string `json:"plat_ids"`
+}

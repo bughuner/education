@@ -13,3 +13,7 @@ type GetDocResp struct {
 	Total int64 `json:"total"`
 	Data  []*model.Doc
 }
+
+type DeleteDocReq struct {
+	DocIds []string `json:"doc_ids"`
+}

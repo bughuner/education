@@ -65,6 +65,9 @@ func updateNpc(c *gin.Context, req *model.Npc) (*model.Npc, error) {
 	if req.Introduction != "" {
 		npc.Introduction = req.Introduction
 	}
+	if npc.Sculpt != "" {
+		npc.Sculpt = req.Sculpt
+	}
 	npc.Ordinate = req.Ordinate
 	npc.Horizon = req.Horizon
 	err = npcDb.WithContext(c).Save(npc)

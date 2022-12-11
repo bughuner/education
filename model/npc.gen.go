@@ -16,6 +16,7 @@ type Npc struct {
 	Ordinate     int64  `gorm:"column:ordinate;type:int" json:"ordinate"`                  // 纵坐标
 	MapID        string `gorm:"column:map_id;type:varchar(255)" json:"map_id"`             // 地图id
 	Type         int64  `gorm:"column:type;type:tinyint" json:"type"`                      // 类型
+	Sculpt       string `gorm:"column:sculpt;type:varchar(255)" json:"sculpt"`             // 造型
 }
 
 // TableName Npc's table name

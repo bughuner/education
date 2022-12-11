@@ -13,3 +13,7 @@ type GetNpcTaskResp struct {
 	Total int64 `json:"total"`
 	Data  []*model.NpcTask
 }
+
+type DeleteNpcTaskReq struct {
+	NpcTaskIds []string `json:"npc_task_ids"`
+}

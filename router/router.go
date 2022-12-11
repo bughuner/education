@@ -5,6 +5,7 @@ import (
 	. "education/api/doc/doc_question"
 	. "education/api/exchange_gift"
 	. "education/api/form"
+	. "education/api/gift"
 	. "education/api/monster"
 	. "education/api/monster/monster_question"
 	. "education/api/npc"
@@ -24,6 +25,7 @@ func InitRouter(router *gin.Engine) {
 	user := router.Group("user")
 	{
 		user.POST("/login", LoginApi)
+		user.POST("/get_user", GetUserApi)
 		user.POST("/add_user", AddUserApi)
 		user.POST("/update_user", UpdateUserApi)
 		user.POST("/add_user_task", user_task.AddUserTaskApi)
@@ -52,11 +54,14 @@ func InitRouter(router *gin.Engine) {
 	}
 	npc := router.Group("npc")
 	{
-		npc.POST("/get_npc_task", GetNPCTaskApi)
 		npc.POST("/get_npc", GetNpcApi)
 		npc.POST("/add_npc", AddNpcApi)
 		npc.POST("/update_npc", UpdateNpcApi)
 		npc.POST("/delete_npc", DeleteNpcApi)
+		npc.POST("/get_npc_task", GetNPCTaskApi)
+		npc.POST("/add_npc_task", AddNpcTaskApi)
+		npc.POST("/update_npc_task", UpdateNpcApi)
+		npc.POST("/delete_npc_task", DeleteNpcTaskApi)
 	}
 	shop := router.Group("shop")
 	{
@@ -75,6 +80,7 @@ func InitRouter(router *gin.Engine) {
 		doc.POST("/add_doc", AddDocApi)
 		doc.POST("/get_doc", GetDocApi)
 		doc.POST("/update_doc", UpdateDocApi)
+		doc.POST("/delete_doc", DeleteDocApi)
 		doc.POST("/get_doc_question", GetDocQuestionApi)
 		doc.POST("/add_doc_question", AddDocQuestionApi)
 		doc.POST("/update_doc_question", UpdateDocQuestionApi)
@@ -97,5 +103,15 @@ func InitRouter(router *gin.Engine) {
 	plat := router.Group("/plat")
 	{
 		plat.POST("/get_plat", GetPlatApi)
+		plat.POST("/add_plat", AddPlatApi)
+		plat.POST("/update_plat", UpdatePlatApi)
+		plat.POST("/delete_plat", DeletePlatApi)
+	}
+	gift := router.Group("/gift")
+	{
+		gift.POST("/get_gift", GetGiftApi)
+		gift.POST("/add_gift", AddGiftApi)
+		gift.POST("/update_gift", UpdateGiftApi)
+		gift.POST("/delete_gift", DeleteGiftApi)
 	}
 }
