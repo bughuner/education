@@ -33,9 +33,11 @@ func newNpc(db *gorm.DB, opts ...gen.DOOption) npc {
 	_npc.Introduction = field.NewString(tableName, "introduction")
 	_npc.Horizon = field.NewInt64(tableName, "horizon")
 	_npc.Ordinate = field.NewInt64(tableName, "ordinate")
-	_npc.MapID = field.NewString(tableName, "map_id")
+	_npc.PlatID = field.NewString(tableName, "plat_id")
 	_npc.Type = field.NewInt64(tableName, "type")
 	_npc.Sculpt = field.NewString(tableName, "sculpt")
+	_npc.Width = field.NewInt64(tableName, "width")
+	_npc.Height = field.NewInt64(tableName, "height")
 
 	_npc.fillFieldMap()
 
@@ -52,9 +54,11 @@ type npc struct {
 	Introduction field.String // 自我介绍
 	Horizon      field.Int64  // 横坐标
 	Ordinate     field.Int64  // 纵坐标
-	MapID        field.String // 地图id
+	PlatID       field.String // 地图id
 	Type         field.Int64  // 类型
 	Sculpt       field.String // 造型
+	Width        field.Int64  // 宽
+	Height       field.Int64  // 高
 
 	fieldMap map[string]field.Expr
 }
@@ -77,9 +81,11 @@ func (n *npc) updateTableName(table string) *npc {
 	n.Introduction = field.NewString(table, "introduction")
 	n.Horizon = field.NewInt64(table, "horizon")
 	n.Ordinate = field.NewInt64(table, "ordinate")
-	n.MapID = field.NewString(table, "map_id")
+	n.PlatID = field.NewString(table, "plat_id")
 	n.Type = field.NewInt64(table, "type")
 	n.Sculpt = field.NewString(table, "sculpt")
+	n.Width = field.NewInt64(table, "width")
+	n.Height = field.NewInt64(table, "height")
 
 	n.fillFieldMap()
 
@@ -102,16 +108,18 @@ func (n *npc) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (n *npc) fillFieldMap() {
-	n.fieldMap = make(map[string]field.Expr, 9)
+	n.fieldMap = make(map[string]field.Expr, 11)
 	n.fieldMap["id"] = n.ID
 	n.fieldMap["name"] = n.Name
 	n.fieldMap["image"] = n.Image
 	n.fieldMap["introduction"] = n.Introduction
 	n.fieldMap["horizon"] = n.Horizon
 	n.fieldMap["ordinate"] = n.Ordinate
-	n.fieldMap["map_id"] = n.MapID
+	n.fieldMap["plat_id"] = n.PlatID
 	n.fieldMap["type"] = n.Type
 	n.fieldMap["sculpt"] = n.Sculpt
+	n.fieldMap["width"] = n.Width
+	n.fieldMap["height"] = n.Height
 }
 
 func (n npc) clone(db *gorm.DB) npc {

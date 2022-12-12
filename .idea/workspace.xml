@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/gift/get_gift.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/gift/get_gift.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/npc/add_npc.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/npc/add_npc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/npc/get_npc.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/npc/get_npc.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/npc/update_npc.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/npc/update_npc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/doc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/gift.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/gift.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/npc_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/npc_task.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/plat.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/plat.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model_view/npc.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/npc.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/npc.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/npc.gen.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/query/npc.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/npc.gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,22 +141,22 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1670684595509" />
-    <state width="1506" height="172" key="GridCell.Tab.0.bottom" timestamp="1670774432252">
+    <state width="1506" height="225" key="GridCell.Tab.0.bottom" timestamp="1670850280587">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670774432252" />
-    <state width="1506" height="172" key="GridCell.Tab.0.center" timestamp="1670774432251">
+    <state width="1506" height="225" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1670850280587" />
+    <state width="1506" height="225" key="GridCell.Tab.0.center" timestamp="1670850280583">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670774432251" />
-    <state width="1506" height="172" key="GridCell.Tab.0.left" timestamp="1670774432251">
+    <state width="1506" height="225" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1670850280583" />
+    <state width="1506" height="225" key="GridCell.Tab.0.left" timestamp="1670850280583">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670774432251" />
-    <state width="1506" height="172" key="GridCell.Tab.0.right" timestamp="1670774432252">
+    <state width="1506" height="225" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1670850280583" />
+    <state width="1506" height="225" key="GridCell.Tab.0.right" timestamp="1670850280583">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="172" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670774432252" />
+    <state width="1506" height="225" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1670850280583" />
     <state width="1506" height="242" key="GridCell.Tab.1.bottom" timestamp="1670689040958">
       <screen x="0" y="0" width="1549" height="823" />
     </state>

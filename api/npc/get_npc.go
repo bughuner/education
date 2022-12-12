@@ -52,8 +52,8 @@ func getNpc(c *gin.Context, req *model_view.GetNpcReq) (*model_view.GetNpcResp, 
 	if req.Name != "" {
 		sql = sql.Where(npcDb.Name.Eq(req.Name))
 	}
-	if req.MapID != "" {
-		sql = sql.Where(npcDb.MapID.Eq(req.MapID))
+	if req.PlatId != "" {
+		sql = sql.Where(npcDb.PlatID.Eq(req.PlatId))
 	}
 	if req.Type != 0 {
 		sql = sql.Where(npcDb.Type.Eq(req.Type))
@@ -77,7 +77,7 @@ func getNpc(c *gin.Context, req *model_view.GetNpcReq) (*model_view.GetNpcResp, 
 			Introduction: item.Introduction,
 			Horizon:      item.Horizon,
 			Ordinate:     item.Ordinate,
-			MapID:        item.MapID,
+			PlatID:       item.PlatID,
 			Type:         item.Type,
 		}
 	}

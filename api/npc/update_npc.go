@@ -50,8 +50,8 @@ func updateNpc(c *gin.Context, req *model.Npc) (*model.Npc, error) {
 	if npc == nil {
 		return nil, util.BuildErrorInfo("未找到NPC")
 	}
-	if req.MapID != "" {
-		npc.MapID = req.MapID
+	if req.PlatID != "" {
+		npc.PlatID = req.PlatID
 	}
 	if req.Type != 0 {
 		npc.Type = req.Type
@@ -68,6 +68,8 @@ func updateNpc(c *gin.Context, req *model.Npc) (*model.Npc, error) {
 	if npc.Sculpt != "" {
 		npc.Sculpt = req.Sculpt
 	}
+	npc.Height = req.Height
+	npc.Width = req.Width
 	npc.Ordinate = req.Ordinate
 	npc.Horizon = req.Horizon
 	err = npcDb.WithContext(c).Save(npc)

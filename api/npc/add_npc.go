@@ -39,7 +39,7 @@ func checkAddParam(req *model.Npc) error {
 	if req.Type == 0 {
 		return util.BuildErrorInfo("类型为空")
 	}
-	if req.MapID == "" {
+	if req.PlatID == "" {
 		return util.BuildErrorInfo("地图ID为空")
 	}
 	return nil
