@@ -25,9 +25,7 @@ func init() {
 
 func main() {
 	g := gin.Default()
-	g.Use(middle.Cors())
-	g.Use(gin.Logger())
-	g.Use(gin.Recovery())
+	g.Use(middle.Cors(), gin.Logger(), gin.Recovery())
 	router.InitRouter(g)
 	g.Run(viper.GetString("addr"))
 }

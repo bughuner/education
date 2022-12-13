@@ -14,6 +14,7 @@ import (
 	. "education/api/question"
 	. "education/api/shop"
 	. "education/api/task"
+	. "education/api/tools"
 	. "education/api/user"
 	"education/api/user/user_question"
 	"education/api/user/user_task"
@@ -113,5 +114,10 @@ func InitRouter(router *gin.Engine) {
 		gift.POST("/add_gift", AddGiftApi)
 		gift.POST("/update_gift", UpdateGiftApi)
 		gift.POST("/delete_gift", DeleteGiftApi)
+	}
+	tools := router.Group("/tool")
+	{
+		tools.POST("/upload", UploadFileApi)
+		tools.GET("/download", ReadFileApi)
 	}
 }

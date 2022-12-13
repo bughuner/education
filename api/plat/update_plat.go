@@ -62,6 +62,9 @@ func updatePlat(c *gin.Context, req *model.Plat) (*model.Plat, error) {
 	if req.Width != 0 {
 		plat.Width = req.Width
 	}
+	if req.PassArea != "" {
+		plat.PassArea = req.PassArea
+	}
 	err = platDb.WithContext(c).Save(plat)
 	if err != nil {
 		log.Printf("platDb save failed, oldPlat:%v, err:%v", plat, err)
