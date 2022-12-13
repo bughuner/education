@@ -58,7 +58,7 @@ func saveUploadedFile(c *gin.Context, file *multipart.FileHeader, dst string) er
 	}
 	defer src.Close()
 	//在本地创建一个文件
-	out, err := os.OpenFile(dst, os.O_APPEND|os.O_CREATE, 0644)
+	out, err := os.OpenFile(dst, os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
 	if err != nil {
 		return err
 	}
