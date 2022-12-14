@@ -64,7 +64,7 @@ func getGiftCount(c *gin.Context, req *model_view.GetGiftCountReq) (*model_view.
 		log.Printf("shopDb count failed, req:%v, err:%v\n", req, err)
 		return nil, util.BuildErrorInfo("shopDb count failed, req:%v, err:%v", req, err)
 	}
-	shopList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	shopList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("shopDb query failed, req:%v, err:%v\n", req, err)
 		return nil, util.BuildErrorInfo("shopDb query failed, req:%v, err:%v\n", req, err)

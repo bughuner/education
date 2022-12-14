@@ -57,7 +57,7 @@ func getDocQuestion(c *gin.Context, req *model_view.GetDocQuestionReq) (*model_v
 		log.Printf("docQuestionDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("docQuestionDb count failed, err:%v", err)
 	}
-	docQuestionList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	docQuestionList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("docQuestionDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("docQuestionDb query failed, err:%v\n", err)

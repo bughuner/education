@@ -57,7 +57,7 @@ func getNpcTask(c *gin.Context, req *model_view.GetNpcTaskReq) (*model_view.GetN
 		log.Printf("npcTaskDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcTaskDb count failed, err:%v", err)
 	}
-	npcTaskList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	npcTaskList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("npcTaskDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcTaskDb query failed, err:%v\n", err)

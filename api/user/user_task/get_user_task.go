@@ -58,7 +58,7 @@ func getUserTask(c *gin.Context, req *model_view.GetUserTaskReq) (*model_view.Ge
 		log.Printf("userTaskDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userTaskDb query failed, err:%v", err)
 	}
-	userTaskList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	userTaskList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("userTaskDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userTaskDb query failed, err:%v", err)

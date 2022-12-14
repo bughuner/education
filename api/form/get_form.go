@@ -66,7 +66,7 @@ func getForm(c *gin.Context, req *model_view.GetFormReq) (*model_view.GetFormRes
 		log.Printf("formDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("formDb count failed, err:%v", err)
 	}
-	formList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	formList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("formDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("formDb query failed, err:%v\n", err)

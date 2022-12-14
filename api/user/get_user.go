@@ -72,7 +72,7 @@ func getUser(c *gin.Context, req *model_view.GetUserReq) (*model_view.GetUserRes
 		log.Printf("userDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userDb query failed, err:%v", err)
 	}
-	userList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	userList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("userDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userDb query failed, err:%v", err)

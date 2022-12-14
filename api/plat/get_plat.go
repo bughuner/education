@@ -57,7 +57,7 @@ func getMap(c *gin.Context, req *model_view.GetPlatReq) (*model_view.GetPlatResp
 		log.Printf("platDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("platDb count failed, err:%v", err)
 	}
-	platList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	platList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("platDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("platDb query failed, err:%v\n", err)

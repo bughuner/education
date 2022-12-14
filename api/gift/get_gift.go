@@ -60,7 +60,7 @@ func getGift(c *gin.Context, req *model_view.GetGiftReq) (*model_view.GetGiftRes
 		log.Printf("giftDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("giftDb count failed, err:%v", err)
 	}
-	giftList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	giftList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("giftDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("giftDb query failed, err:%v\n", err)

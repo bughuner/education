@@ -63,7 +63,7 @@ func getNpc(c *gin.Context, req *model_view.GetNpcReq) (*model_view.GetNpcResp, 
 		log.Printf("npcDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcDb count failed, err:%v", err)
 	}
-	npcList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	npcList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("npcDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcDb query failed, err:%v\n", err)

@@ -59,7 +59,7 @@ func getExchangeGiftList(c *gin.Context, req *model_view.ExchangeGiftReq) (*mode
 		log.Printf("exchangeGiftDb get total failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("exchangeGiftDb get total failed, err:%v", err)
 	}
-	exchangeGiftList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	exchangeGiftList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("exchangeGiftDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("exchangeGiftDb query failed, err:%v", err)

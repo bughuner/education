@@ -57,7 +57,7 @@ func getUserQuestion(c *gin.Context, req *model_view.GetUserQuestionReq) (*model
 		log.Printf("userQuestionDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userQuestionDb query failed, err:%v", err)
 	}
-	userQuestionList, err := sql.Find()
+	userQuestionList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("userQuestionDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("userQuestionDb query failed, err:%v", err)

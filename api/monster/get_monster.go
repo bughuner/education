@@ -72,7 +72,7 @@ func getMonsterInfo(c *gin.Context, req *model_view.GetMonsterReq) (*model_view.
 		log.Printf("monsterDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("monsterDb count failed, err:%v", err)
 	}
-	monsterList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	monsterList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("monsterDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("monsterDb query failed, err:%v\n", err)

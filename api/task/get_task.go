@@ -69,7 +69,7 @@ func getTaskList(c *gin.Context, req *model_view.TaskReq) (*model_view.TaskResp,
 		log.Printf("taskDb count failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("taskDb count failed, err:%v", err)
 	}
-	taskList, err := sql.Offset(req.PageNo - 1).Limit(req.PageSize).Find()
+	taskList, err := sql.Offset((req.PageNo - 1) * req.PageSize).Limit(req.PageSize).Find()
 	if err != nil {
 		log.Printf("taskDb count query, err:%v\n", err)
 		return nil, util.BuildErrorInfo("taskDb query failed, err:%v", err)
