@@ -4,7 +4,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -62,17 +61,9 @@ func getNpcTask(c *gin.Context, req *model_view.GetNpcTaskReq) (*model_view.GetN
 		log.Printf("npcTaskDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcTaskDb query failed, err:%v\n", err)
 	}
-	npcTasks := make([]*model.NpcTask, len(npcTaskList))
-	for i, item := range npcTaskList {
-		npcTasks[i] = &model.NpcTask{
-			ID:     item.ID,
-			NpcID:  item.NpcID,
-			TaskID: item.TaskID,
-		}
-	}
 	res := &model_view.GetNpcTaskResp{
 		Total: total,
-		Data:  npcTasks,
+		Data:  npcTaskList,
 	}
 	return res, nil
 }

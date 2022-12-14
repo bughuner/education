@@ -4,7 +4,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -62,19 +61,9 @@ func getMap(c *gin.Context, req *model_view.GetPlatReq) (*model_view.GetPlatResp
 		log.Printf("platDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("platDb query failed, err:%v\n", err)
 	}
-	plats := make([]*model.Plat, len(platList))
-	for i, item := range platList {
-		plats[i] = &model.Plat{
-			ID:     item.ID,
-			Name:   item.Name,
-			Image:  item.Image,
-			Width:  item.Width,
-			Height: item.Height,
-		}
-	}
 	res := &model_view.GetPlatResp{
 		Total: total,
-		Data:  plats,
+		Data:  platList,
 	}
 	return res, nil
 }

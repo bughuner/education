@@ -65,19 +65,9 @@ func getGift(c *gin.Context, req *model_view.GetGiftReq) (*model_view.GetGiftRes
 		log.Printf("giftDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("giftDb query failed, err:%v\n", err)
 	}
-	gifts := make([]*model.Gift, len(giftList))
-	for i, item := range giftList {
-		gifts[i] = &model.Gift{
-			ID:           item.ID,
-			Name:         item.Name,
-			Introduction: item.Introduction,
-			Image:        item.Image,
-			Coin:         item.Coin,
-		}
-	}
 	res := &model_view.GetGiftResp{
 		Total: total,
-		Data:  gifts,
+		Data:  giftList,
 	}
 	return res, nil
 }

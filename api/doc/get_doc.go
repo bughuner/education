@@ -4,7 +4,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -62,19 +61,9 @@ func getDoc(c *gin.Context, req *model_view.GetDocReq) (*model_view.GetDocResp, 
 		log.Printf("docDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("docDb query failed, err:%v\n", err)
 	}
-	getDocRes := make([]*model.Doc, len(docList))
-	for i, item := range docList {
-		getDocRes[i] = &model.Doc{
-			ID:      item.ID,
-			Link:    item.Link,
-			Author:  item.Author,
-			Content: item.Content,
-			Status:  item.Status,
-		}
-	}
 	res := &model_view.GetDocResp{
 		Total: total,
-		Data:  getDocRes,
+		Data:  docList,
 	}
 	return res, nil
 }

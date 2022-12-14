@@ -4,7 +4,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -68,22 +67,9 @@ func getNpc(c *gin.Context, req *model_view.GetNpcReq) (*model_view.GetNpcResp, 
 		log.Printf("npcDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcDb query failed, err:%v\n", err)
 	}
-	npcs := make([]*model.Npc, len(npcList))
-	for i, item := range npcList {
-		npcs[i] = &model.Npc{
-			ID:           item.ID,
-			Name:         item.Name,
-			Image:        item.Image,
-			Introduction: item.Introduction,
-			Horizon:      item.Horizon,
-			Ordinate:     item.Ordinate,
-			PlatID:       item.PlatID,
-			Type:         item.Type,
-		}
-	}
 	res := &model_view.GetNpcResp{
 		Total: total,
-		Data:  npcs,
+		Data:  npcList,
 	}
 	return res, nil
 }

@@ -4,7 +4,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -77,22 +76,9 @@ func getMonsterInfo(c *gin.Context, req *model_view.GetMonsterReq) (*model_view.
 		log.Printf("monsterDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("monsterDb query failed, err:%v\n", err)
 	}
-	monsters := make([]*model.Monster, len(monsterList))
-	for i, item := range monsterList {
-		monsters[i] = &model.Monster{
-			ID:              item.ID,
-			Type:            item.Type,
-			Name:            item.Name,
-			Level:           item.Level,
-			ExperienceValue: item.ExperienceValue,
-			Coin:            item.Coin,
-			Hp:              item.Hp,
-			Image:           item.Image,
-		}
-	}
 	res := &model_view.GetMonsterResp{
 		Total: total,
-		Data:  monsters,
+		Data:  monsterList,
 	}
 	return res, nil
 }

@@ -4,7 +4,6 @@ import (
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
-	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -71,20 +70,9 @@ func getForm(c *gin.Context, req *model_view.GetFormReq) (*model_view.GetFormRes
 		log.Printf("formDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("formDb query failed, err:%v\n", err)
 	}
-	forms := make([]*model.Form, len(formList))
-	for i, item := range formList {
-		forms[i] = &model.Form{
-			ID:      item.ID,
-			Type:    item.Type,
-			UserID:  item.UserID,
-			MapID:   item.MapID,
-			Content: item.Content,
-			Source:  item.Source,
-		}
-	}
 	res := &model_view.GetFormResp{
 		Total: total,
-		Data:  forms,
+		Data:  formList,
 	}
 	return res, nil
 }
