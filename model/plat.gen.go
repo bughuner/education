@@ -8,12 +8,13 @@ const TableNamePlat = "plat"
 
 // Plat mapped from table <plat>
 type Plat struct {
-	ID       string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`
-	Name     string `gorm:"column:name;type:varchar(255)" json:"name"`   // 名称
-	Image    string `gorm:"column:image;type:varchar(255)" json:"image"` // 图片
-	Width    int64  `gorm:"column:width;type:int" json:"width"`          // 宽
-	Height   int64  `gorm:"column:height;type:int" json:"height"`        // 高
-	PassArea string `gorm:"column:pass_area;type:varchar(255)" json:"pass_area"`
+	ID        string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"`
+	Name      string `gorm:"column:name;type:varchar(255)" json:"name"`   // 名称
+	Image     string `gorm:"column:image;type:varchar(255)" json:"image"` // 图片
+	Width     int64  `gorm:"column:width;type:int" json:"width"`          // 宽
+	Height    int64  `gorm:"column:height;type:int" json:"height"`        // 高
+	PassArea  string `gorm:"column:pass_area;type:varchar(255)" json:"pass_area"`
+	IsDefault int64  `gorm:"column:is_default;type:int" json:"is_default"` // 是否是默认
 }
 
 // TableName Plat's table name

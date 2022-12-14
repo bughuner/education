@@ -33,6 +33,7 @@ func newPlat(db *gorm.DB, opts ...gen.DOOption) plat {
 	_plat.Width = field.NewInt64(tableName, "width")
 	_plat.Height = field.NewInt64(tableName, "height")
 	_plat.PassArea = field.NewString(tableName, "pass_area")
+	_plat.IsDefault = field.NewInt64(tableName, "is_default")
 
 	_plat.fillFieldMap()
 
@@ -42,13 +43,14 @@ func newPlat(db *gorm.DB, opts ...gen.DOOption) plat {
 type plat struct {
 	platDo platDo
 
-	ALL      field.Asterisk
-	ID       field.String
-	Name     field.String // 名称
-	Image    field.String // 图片
-	Width    field.Int64  // 宽
-	Height   field.Int64  // 高
-	PassArea field.String
+	ALL       field.Asterisk
+	ID        field.String
+	Name      field.String // 名称
+	Image     field.String // 图片
+	Width     field.Int64  // 宽
+	Height    field.Int64  // 高
+	PassArea  field.String
+	IsDefault field.Int64 // 是否是默认
 
 	fieldMap map[string]field.Expr
 }
@@ -71,6 +73,7 @@ func (p *plat) updateTableName(table string) *plat {
 	p.Width = field.NewInt64(table, "width")
 	p.Height = field.NewInt64(table, "height")
 	p.PassArea = field.NewString(table, "pass_area")
+	p.IsDefault = field.NewInt64(table, "is_default")
 
 	p.fillFieldMap()
 
@@ -93,13 +96,14 @@ func (p *plat) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (p *plat) fillFieldMap() {
-	p.fieldMap = make(map[string]field.Expr, 6)
+	p.fieldMap = make(map[string]field.Expr, 7)
 	p.fieldMap["id"] = p.ID
 	p.fieldMap["name"] = p.Name
 	p.fieldMap["image"] = p.Image
 	p.fieldMap["width"] = p.Width
 	p.fieldMap["height"] = p.Height
 	p.fieldMap["pass_area"] = p.PassArea
+	p.fieldMap["is_default"] = p.IsDefault
 }
 
 func (p plat) clone(db *gorm.DB) plat {

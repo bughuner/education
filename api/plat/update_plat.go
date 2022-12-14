@@ -65,6 +65,7 @@ func updatePlat(c *gin.Context, req *model.Plat) (*model.Plat, error) {
 	if req.PassArea != "" {
 		plat.PassArea = req.PassArea
 	}
+	plat.IsDefault = req.IsDefault
 	err = platDb.WithContext(c).Save(plat)
 	if err != nil {
 		log.Printf("platDb save failed, oldPlat:%v, err:%v", plat, err)

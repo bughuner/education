@@ -1,6 +1,8 @@
 package model_view
 
-import "education/model"
+import (
+	"education/model"
+)
 
 type GetNpcTaskReq struct {
 	ID       string `gorm:"column:id;type:varchar(255);primaryKey" json:"id"` // npc持有任务id
@@ -11,7 +13,12 @@ type GetNpcTaskReq struct {
 
 type GetNpcTaskResp struct {
 	Total int64 `json:"total"`
-	Data  []*model.NpcTask
+	Data  []*NpcTaskDetail
+}
+
+type NpcTaskDetail struct {
+	NpcTask *model.NpcTask
+	Task    *model.Task
 }
 
 type DeleteNpcTaskReq struct {

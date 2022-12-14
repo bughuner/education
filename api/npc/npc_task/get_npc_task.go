@@ -1,9 +1,11 @@
 package npc_task
 
 import (
+	"education/api/task"
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
+	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -61,9 +63,33 @@ func getNpcTask(c *gin.Context, req *model_view.GetNpcTaskReq) (*model_view.GetN
 		log.Printf("npcTaskDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("npcTaskDb query failed, err:%v\n", err)
 	}
+	taskIds := make([]string, len(npcTaskList))
+	for i, item := range npcTaskList {
+		taskIds[i] = item.TaskID
+	}
+	taskList, err := task.GetTaskById(c, taskIds)
+	if err != nil {
+		log.Printf("task.GetTaskById failed, err:%v\n", err)
+		return nil, util.BuildErrorInfo("task.GetTaskById failed, err:%v\n", err)
+	}
+	taskMap := make(map[string]*model.Task)
+	for _, item := range taskList {
+		taskMap[item.ID] = item
+	}
+	npcTaskDetail := make([]*model_view.NpcTaskDetail, len(npcTaskList))
+	for i, item := range npcTaskList {
+		task, ok := taskMap[item.TaskID]
+		if !ok {
+			continue
+		}
+		npcTaskDetail[i] = &model_view.NpcTaskDetail{
+			NpcTask: item,
+			Task:    task,
+		}
+	}
 	res := &model_view.GetNpcTaskResp{
 		Total: total,
-		Data:  npcTaskList,
+		Data:  npcTaskDetail,
 	}
 	return res, nil
 }
