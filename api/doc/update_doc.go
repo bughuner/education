@@ -24,7 +24,7 @@ func UpdateDocApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	doc, err := updateDoc(c, req.ID, req.Link, req.Author, req.Content)
+	doc, err := updateDoc(c, req.ID, req.Link, req.Author, req.Content, req.Type, req.Label)
 	if err != nil {
 		log.Printf("updateDoc failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.InternalServerError, err.Error())
@@ -40,7 +40,7 @@ func checkUpdateParam(id string) error {
 	return nil
 }
 
-func updateDoc(c *gin.Context, id, link, author, content string) (*model.Doc, error) {
+func updateDoc(c *gin.Context, id, link, author, content, docType, label string) (*model.Doc, error) {
 	docDb := database.Query.Doc
 	doc, err := docDb.WithContext(c).Where(docDb.ID.Eq(id)).First()
 	if err != nil && err != gorm.ErrRecordNotFound {
@@ -58,6 +58,12 @@ func updateDoc(c *gin.Context, id, link, author, content string) (*model.Doc, er
 	}
 	if content != "" {
 		doc.Content = content
+	}
+	if docType != "" {
+		doc.Type = docType
+	}
+	if label != "" {
+		doc.Label = label
 	}
 	err = docDb.WithContext(c).Save(doc)
 	if err != nil {
