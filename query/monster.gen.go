@@ -35,6 +35,7 @@ func newMonster(db *gorm.DB, opts ...gen.DOOption) monster {
 	_monster.Coin = field.NewInt64(tableName, "coin")
 	_monster.Hp = field.NewInt64(tableName, "hp")
 	_monster.Image = field.NewString(tableName, "image")
+	_monster.PlatID = field.NewString(tableName, "plat_id")
 
 	_monster.fillFieldMap()
 
@@ -53,6 +54,7 @@ type monster struct {
 	Coin            field.Int64  // 金币
 	Hp              field.Int64  // 生命值
 	Image           field.String // 头像
+	PlatID          field.String // 地图id
 
 	fieldMap map[string]field.Expr
 }
@@ -77,6 +79,7 @@ func (m *monster) updateTableName(table string) *monster {
 	m.Coin = field.NewInt64(table, "coin")
 	m.Hp = field.NewInt64(table, "hp")
 	m.Image = field.NewString(table, "image")
+	m.PlatID = field.NewString(table, "plat_id")
 
 	m.fillFieldMap()
 
@@ -99,7 +102,7 @@ func (m *monster) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (m *monster) fillFieldMap() {
-	m.fieldMap = make(map[string]field.Expr, 8)
+	m.fieldMap = make(map[string]field.Expr, 9)
 	m.fieldMap["id"] = m.ID
 	m.fieldMap["type"] = m.Type
 	m.fieldMap["name"] = m.Name
@@ -108,6 +111,7 @@ func (m *monster) fillFieldMap() {
 	m.fieldMap["coin"] = m.Coin
 	m.fieldMap["hp"] = m.Hp
 	m.fieldMap["image"] = m.Image
+	m.fieldMap["plat_id"] = m.PlatID
 }
 
 func (m monster) clone(db *gorm.DB) monster {

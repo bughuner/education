@@ -70,6 +70,9 @@ func updateMonster(c *gin.Context, monster *model.Monster, req *model.Monster) (
 	if req.Image != "" {
 		monster.Image = req.Image
 	}
+	if req.PlatID != "" {
+		monster.PlatID = req.PlatID
+	}
 	monster.Hp = req.Hp
 
 	monsterDb := database.Query.Monster

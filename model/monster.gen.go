@@ -16,6 +16,7 @@ type Monster struct {
 	Coin            int64  `gorm:"column:coin;type:int" json:"coin"`                         // 金币
 	Hp              int64  `gorm:"column:hp;type:int" json:"hp"`                             // 生命值
 	Image           string `gorm:"column:image;type:varchar(255)" json:"image"`              // 头像
+	PlatID          string `gorm:"column:plat_id;type:varchar(255)" json:"plat_id"`          // 地图id
 }
 
 // TableName Monster's table name
