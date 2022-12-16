@@ -24,7 +24,7 @@ func UpdateDocApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	doc, err := updateDoc(c, req.ID, req.Link, req.Author, req.Content, req.Type, req.Label)
+	doc, err := updateDoc(c, req.ID, req.Link, req.Author, req.Content, req.Type, req.Label, req.Title)
 	if err != nil {
 		log.Printf("updateDoc failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.InternalServerError, err.Error())
