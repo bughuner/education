@@ -15,6 +15,7 @@ type Doc struct {
 	Status  int64  `gorm:"column:status;type:tinyint" json:"status"`         // 状态 0-待审核 1-审核
 	Type    string `gorm:"column:type;type:varchar(255)" json:"type"`        // 类型
 	Label   string `gorm:"column:label;type:varchar(255)" json:"label"`      // 标签
+	Title   string `gorm:"column:title;type:varchar(255)" json:"title"`      // 标题
 }
 
 // TableName Doc's table name

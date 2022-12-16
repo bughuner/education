@@ -40,7 +40,7 @@ func checkUpdateParam(id string) error {
 	return nil
 }
 
-func updateDoc(c *gin.Context, id, link, author, content, docType, label string) (*model.Doc, error) {
+func updateDoc(c *gin.Context, id, link, author, content, docType, label, title string) (*model.Doc, error) {
 	docDb := database.Query.Doc
 	doc, err := docDb.WithContext(c).Where(docDb.ID.Eq(id)).First()
 	if err != nil && err != gorm.ErrRecordNotFound {
@@ -64,6 +64,9 @@ func updateDoc(c *gin.Context, id, link, author, content, docType, label string)
 	}
 	if label != "" {
 		doc.Label = label
+	}
+	if title != "" {
+		doc.Title = title
 	}
 	err = docDb.WithContext(c).Save(doc)
 	if err != nil {

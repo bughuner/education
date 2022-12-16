@@ -13,7 +13,7 @@ type Plat struct {
 	Image     string `gorm:"column:image;type:varchar(255)" json:"image"` // 图片
 	Width     int64  `gorm:"column:width;type:int" json:"width"`          // 宽
 	Height    int64  `gorm:"column:height;type:int" json:"height"`        // 高
-	PassArea  string `gorm:"column:pass_area;type:varchar(255)" json:"pass_area"`
+	PassArea  string `gorm:"column:pass_area;type:varchar(2048)" json:"pass_area"`
 	IsDefault int64  `gorm:"column:is_default;type:int" json:"is_default"` // 是否是默认
 }
 
