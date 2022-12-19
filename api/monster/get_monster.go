@@ -66,6 +66,9 @@ func getMonsterInfo(c *gin.Context, req *model_view.GetMonsterReq) (*model_view.
 	if req.ExperienceValue != 0 {
 		sql = sql.Where(monsterDb.ExperienceValue.Eq(req.ExperienceValue))
 	}
+	if req.PlatID != "" {
+		sql = sql.Where(monsterDb.PlatID.Eq(req.PlatID))
+	}
 	total, err := sql.Count()
 	if err != nil {
 		log.Printf("monsterDb count failed, err:%v\n", err)
