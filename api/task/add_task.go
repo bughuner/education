@@ -65,6 +65,7 @@ func addTask(c *gin.Context, task *model.Task) (*model.Task, error) {
 		Num:          task.Num,
 		PreTask:      task.PreTask,
 		TargetID:     task.TargetID,
+		CanRepeated:  task.CanRepeated,
 	}
 	err := taskDb.WithContext(c).Save(taskEntity)
 	if err != nil {

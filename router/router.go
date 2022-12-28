@@ -63,6 +63,7 @@ func InitRouter(router *gin.Engine) {
 		npc.POST("/add_npc_task", AddNpcTaskApi)
 		npc.POST("/update_npc_task", UpdateNpcApi)
 		npc.POST("/delete_npc_task", DeleteNpcTaskApi)
+		npc.POST("/get_npc_task_new", GetNPCTaskNewApi)
 	}
 	shop := router.Group("shop")
 	{

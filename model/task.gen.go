@@ -18,6 +18,7 @@ type Task struct {
 	Num          int64  `gorm:"column:num;type:int" json:"num"`                            // 时间/打怪的个数
 	PreTask      string `gorm:"column:pre_task;type:varchar(255)" json:"pre_task"`         // 前序任务id
 	TargetID     string `gorm:"column:target_id;type:varchar(255)" json:"target_id"`       // 对象id  如果是阅读类，就是文章id,如果是文章类，就是文章id
+	CanRepeated  int64  `gorm:"column:can_repeated;type:int" json:"can_repeated"`          // 是否可以重复 0-不可以1-可以
 }
 
 // TableName Task's table name

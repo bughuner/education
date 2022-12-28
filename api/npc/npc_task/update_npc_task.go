@@ -33,8 +33,8 @@ func UpdateNpcTaskApi(c *gin.Context) {
 	common.SendResponse(c, errno.OK, npcTask)
 }
 
-func checkUpdateParam(plat *model.NpcTask) error {
-	if plat.ID == "" {
+func checkUpdateParam(npcTask *model.NpcTask) error {
+	if npcTask.ID == "" {
 		return util.BuildErrorInfo("ID为空")
 	}
 	return nil
