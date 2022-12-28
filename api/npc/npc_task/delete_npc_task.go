@@ -12,14 +12,14 @@ import (
 )
 
 func DeleteNpcTaskApi(c *gin.Context) {
-	var req model_view.DeleteNpcReq
+	var req model_view.DeleteNpcTaskReq
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		log.Printf("ShouldBindJSON DeleteNpcReq failed, err:%v\n", err)
 		common.SendResponse(c, errno.ErrParams, err.Error())
 		return
 	}
-	err = deleteNpcTask(c, req.NpcIds)
+	err = deleteNpcTask(c, req.NpcTaskIds)
 	if err != nil {
 		log.Printf("deleteNpcTask failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.InternalServerError, err.Error())

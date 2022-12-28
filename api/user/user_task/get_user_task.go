@@ -88,6 +88,7 @@ func getUserTask(c *gin.Context, req *model_view.GetUserTaskReq) (*model_view.Ge
 			Type:       item.Type,
 			IsFinished: item.IsFinished,
 			Count:      item.Count,
+			TargetId:   item.TargetID,
 		}
 		task, ok := m[item.TaskID]
 		if !ok {

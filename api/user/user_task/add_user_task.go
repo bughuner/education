@@ -26,7 +26,7 @@ func AddUserTaskApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	userTask, err := addUserTask(c, req.UserID, req.TaskID)
+	userTask, err := addUserTask(c, req.UserID, req.TaskID, req.TargetID)
 	if err != nil {
 		log.Printf("addUserTask failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.OperationErr, err.Error())
@@ -45,7 +45,7 @@ func checkAddUserTaskParam(userTask *model.UserTask) error {
 	return nil
 }
 
-func addUserTask(c *gin.Context, userId, taskId string) (*model.UserTask, error) {
+func addUserTask(c *gin.Context, userId, taskId string, targetId string) (*model.UserTask, error) {
 	taskList, err := task.GetTaskById(c, []string{taskId})
 	if err != nil {
 		log.Printf("GetTaskById failed, userId:%v, taskId:%v, err:%v\n", userId, taskId, err)
@@ -62,6 +62,7 @@ func addUserTask(c *gin.Context, userId, taskId string) (*model.UserTask, error)
 		Type:       taskEntity.Type,
 		IsFinished: 0,
 		Count:      taskEntity.Num,
+		TargetID:   targetId,
 	}
 	if taskEntity.Type == consts.TaskTypeDoc {
 		docList, err := service.GetDocQuestionByDocId(c, []string{taskEntity.TargetID})

@@ -33,6 +33,7 @@ func newUserTask(db *gorm.DB, opts ...gen.DOOption) userTask {
 	_userTask.Type = field.NewInt64(tableName, "type")
 	_userTask.IsFinished = field.NewInt64(tableName, "is_finished")
 	_userTask.Count = field.NewInt64(tableName, "count")
+	_userTask.TargetID = field.NewString(tableName, "target_id")
 
 	_userTask.fillFieldMap()
 
@@ -49,6 +50,7 @@ type userTask struct {
 	Type       field.Int64  // 任务类型
 	IsFinished field.Int64  // 是否完成
 	Count      field.Int64  // 个数
+	TargetID   field.String // 目标id
 
 	fieldMap map[string]field.Expr
 }
@@ -71,6 +73,7 @@ func (u *userTask) updateTableName(table string) *userTask {
 	u.Type = field.NewInt64(table, "type")
 	u.IsFinished = field.NewInt64(table, "is_finished")
 	u.Count = field.NewInt64(table, "count")
+	u.TargetID = field.NewString(table, "target_id")
 
 	u.fillFieldMap()
 
@@ -93,13 +96,14 @@ func (u *userTask) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (u *userTask) fillFieldMap() {
-	u.fieldMap = make(map[string]field.Expr, 6)
+	u.fieldMap = make(map[string]field.Expr, 7)
 	u.fieldMap["id"] = u.ID
 	u.fieldMap["user_id"] = u.UserID
 	u.fieldMap["task_id"] = u.TaskID
 	u.fieldMap["type"] = u.Type
 	u.fieldMap["is_finished"] = u.IsFinished
 	u.fieldMap["count"] = u.Count
+	u.fieldMap["target_id"] = u.TargetID
 }
 
 func (u userTask) clone(db *gorm.DB) userTask {
