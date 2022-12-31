@@ -53,6 +53,7 @@ func getUserTask(c *gin.Context, req *model_view.GetUserTaskReq) (*model_view.Ge
 	if req.UserID != "" {
 		sql = sql.Where(userTaskDb.UserID.Eq(req.UserID))
 	}
+	sql = sql.Where(userTaskDb.IsFinished.Eq(req.IsFinished))
 	total, err := sql.Count()
 	if err != nil {
 		log.Printf("userTaskDb count failed, err:%v\n", err)

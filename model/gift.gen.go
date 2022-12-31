@@ -13,6 +13,7 @@ type Gift struct {
 	Introduction string `gorm:"column:introduction;type:varchar(255)" json:"introduction"` // 礼物介绍
 	Image        string `gorm:"column:image;type:varchar(255)" json:"image"`               // 图像链接
 	Coin         int64  `gorm:"column:coin;type:int" json:"coin"`                          // 价值金币数
+	Count        int64  `gorm:"column:count;type:int" json:"count"`                        // 数量
 }
 
 // TableName Gift's table name

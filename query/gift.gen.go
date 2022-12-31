@@ -32,6 +32,7 @@ func newGift(db *gorm.DB, opts ...gen.DOOption) gift {
 	_gift.Introduction = field.NewString(tableName, "introduction")
 	_gift.Image = field.NewString(tableName, "image")
 	_gift.Coin = field.NewInt64(tableName, "coin")
+	_gift.Count = field.NewInt64(tableName, "count")
 
 	_gift.fillFieldMap()
 
@@ -47,6 +48,7 @@ type gift struct {
 	Introduction field.String // 礼物介绍
 	Image        field.String // 图像链接
 	Coin         field.Int64  // 价值金币数
+	Count        field.Int64  // 数量
 
 	fieldMap map[string]field.Expr
 }
@@ -68,6 +70,7 @@ func (g *gift) updateTableName(table string) *gift {
 	g.Introduction = field.NewString(table, "introduction")
 	g.Image = field.NewString(table, "image")
 	g.Coin = field.NewInt64(table, "coin")
+	g.Count = field.NewInt64(table, "count")
 
 	g.fillFieldMap()
 
@@ -90,12 +93,13 @@ func (g *gift) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (g *gift) fillFieldMap() {
-	g.fieldMap = make(map[string]field.Expr, 5)
+	g.fieldMap = make(map[string]field.Expr, 6)
 	g.fieldMap["id"] = g.ID
 	g.fieldMap["name"] = g.Name
 	g.fieldMap["introduction"] = g.Introduction
 	g.fieldMap["image"] = g.Image
 	g.fieldMap["coin"] = g.Coin
+	g.fieldMap["count"] = g.Count
 }
 
 func (g gift) clone(db *gorm.DB) gift {

@@ -62,6 +62,7 @@ func updateGift(c *gin.Context, req *model.Gift) (*model.Gift, error) {
 	if req.Introduction != "" {
 		gift.Introduction = req.Introduction
 	}
+	gift.Count = req.Count
 	err = giftDb.WithContext(c).Save(gift)
 	if err != nil {
 		log.Printf("giftDb save failed, err:%v", err)
