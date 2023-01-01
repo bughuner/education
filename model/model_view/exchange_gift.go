@@ -10,7 +10,12 @@ type ExchangeGiftReq struct {
 	PageSize int    `json:"page_size"`
 }
 
+type ExchangeGiftAndGift struct {
+	ExchangeGift *model.ExchangeGift
+	Gift         *model.Gift
+}
+
 type ExchangeGiftResp struct {
-	ExchangeGift []*model.ExchangeGift
-	Total        int64 `json:"total"`
+	Data  []*ExchangeGiftAndGift
+	Total int64 `json:"total"`
 }

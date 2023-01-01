@@ -52,14 +52,14 @@ func checkParam(exchangeGift *model.ExchangeGift) error {
 func exchangeGift(c *gin.Context, userId, giftId string, count int64) error {
 	lockKey := fmt.Sprintf("gift_%v", giftId)
 	lockValue := time.Now().UnixNano()
-	lockOk := database.SetLock(c, lockKey, lockValue, 3 * time.Second)
+	lockOk := database.SetLock(c, lockKey, lockValue, 3*time.Second)
 	defer database.DelLock(c, lockKey, lockValue)
 	if !lockOk {
 		log.Printf("获取锁冲突\n")
 		return util.BuildErrorInfo("获取锁冲突")
 	}
-	shopDb := database.Query.Shop
-	gift, err := shopDb.WithContext(c).Where(shopDb.GiftID.Eq(giftId)).First()
+	giftDb := database.Query.Gift
+	gift, err := giftDb.WithContext(c).Where(giftDb.ID.Eq(giftId)).First()
 	if err != nil && err != gorm.ErrRecordNotFound {
 		log.Printf("shopDb query failed, err:%v\n", err)
 		return util.BuildErrorInfo("shopDb query failed, err:%v", err)
@@ -72,6 +72,20 @@ func exchangeGift(c *gin.Context, userId, giftId string, count int64) error {
 		log.Printf("礼物存量不足\n")
 		return util.BuildErrorInfo("礼物存量不足")
 	}
+	userDb := database.Query.User
+	user, err := userDb.WithContext(c).Where(userDb.ID.Eq(userId)).First()
+	if err != nil && err != gorm.ErrRecordNotFound {
+		log.Printf("userDb query failed, err:%v\n", err)
+		return util.BuildErrorInfo("userDb query failed, err:%v", err)
+	}
+	if user == nil {
+		log.Printf("user is nil\n")
+		return util.BuildErrorInfo("用户不存在")
+	}
+	if user.Coin < count*gift.Coin {
+		log.Printf("用户钱不够\n")
+		return util.BuildErrorInfo("用户钱不够")
+	}
 	exchangeGift := &model.ExchangeGift{
 		ID:     util.GetUUID(),
 		UserID: userId,
@@ -80,10 +94,15 @@ func exchangeGift(c *gin.Context, userId, giftId string, count int64) error {
 		Time:   time.Now().UnixNano() / 1e6, // 毫秒
 	}
 	database.Query.Transaction(func(tx *query.Query) error {
-		_, err = tx.Shop.WithContext(c).Where(tx.Shop.GiftID.Eq(giftId)).UpdateSimple(tx.Shop.Count.Value(gift.Count - count))
+		_, err = tx.Gift.WithContext(c).Where(tx.Gift.ID.Eq(giftId)).UpdateSimple(tx.Gift.Count.Value(gift.Count - count))
 		if err != nil {
 			log.Printf("shopDb update failed, err:%v\n", err)
 			return util.BuildErrorInfo("shopDb update failed, err:%v", err)
+		}
+		_, err = tx.User.WithContext(c).Where(tx.User.ID.Eq(userId)).UpdateSimple(tx.User.Coin.Value(user.Coin - count*gift.Coin))
+		if err != nil {
+			log.Printf("User update failed, err:%v\n", err)
+			return util.BuildErrorInfo("User update failed, err:%v", err)
 		}
 		err = tx.ExchangeGift.WithContext(c).Create(exchangeGift)
 		if err != nil {

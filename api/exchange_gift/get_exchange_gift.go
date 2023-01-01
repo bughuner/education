@@ -1,9 +1,11 @@
 package exchange_gift
 
 import (
+	"education/api/gift"
 	"education/common"
 	errno "education/common/erron"
 	"education/database"
+	"education/model"
 	"education/model/model_view"
 	"education/util"
 	"github.com/gin-gonic/gin"
@@ -64,9 +66,29 @@ func getExchangeGiftList(c *gin.Context, req *model_view.ExchangeGiftReq) (*mode
 		log.Printf("exchangeGiftDb query failed, err:%v\n", err)
 		return nil, util.BuildErrorInfo("exchangeGiftDb query failed, err:%v", err)
 	}
+	giftIds := make([]string, len(exchangeGiftList))
+	for i, item := range exchangeGiftList {
+		giftIds[i] = item.GiftID
+	}
+	giftList, err := gift.GetGiftById(c, giftIds)
+	if err != nil {
+		log.Printf("gift GetGiftById failed, err:%v\n", err)
+		return nil, util.BuildErrorInfo("gift GetGiftById failed, err:%v", err)
+	}
+	giftMap := make(map[string]*model.Gift)
+	for _, item := range giftList {
+		giftMap[item.ID] = item
+	}
+	exchangeGiftAndGift := make([]*model_view.ExchangeGiftAndGift, len(exchangeGiftList))
+	for i, item := range exchangeGiftList {
+		exchangeGiftAndGift[i] = &model_view.ExchangeGiftAndGift{
+			ExchangeGift: item,
+			Gift:         giftMap[item.GiftID],
+		}
+	}
 	res := &model_view.ExchangeGiftResp{
-		ExchangeGift: exchangeGiftList,
-		Total:        total,
+		Data:  exchangeGiftAndGift,
+		Total: total,
 	}
 	return res, nil
 }
