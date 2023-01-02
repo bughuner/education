@@ -83,26 +83,14 @@ func getUserTask(c *gin.Context, req *model_view.GetUserTaskReq) (*model_view.Ge
 	userTasks := make([]*model_view.UserTaskResp, len(userTaskList))
 	for i, item := range userTaskList {
 		userTasks[i] = &model_view.UserTaskResp{
-			ID:         item.ID,
-			UserID:     item.UserID,
-			TaskID:     item.TaskID,
-			Type:       item.Type,
-			IsFinished: item.IsFinished,
-			Count:      item.Count,
-			TargetId:   item.TargetID,
+			UserTask: item,
 		}
 		task, ok := m[item.TaskID]
 		if !ok {
 			log.Printf("task not found")
 			continue
 		}
-		userTasks[i].Level = task.Level
-		userTasks[i].Introduction = task.Introduction
-		userTasks[i].Image = task.Image
-		userTasks[i].Experience = task.Experience
-		userTasks[i].Count = task.Coin
-		userTasks[i].Num = task.Num
-		userTasks[i].PreTask = task.PreTask
+		userTasks[i].Task = task
 	}
 	res := &model_view.GetUserTaskResp{
 		Total: total,

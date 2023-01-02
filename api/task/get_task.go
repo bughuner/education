@@ -46,6 +46,9 @@ func checkGetParam(req *model_view.TaskReq) error {
 func getTaskList(c *gin.Context, req *model_view.TaskReq) (*model_view.TaskResp, error) {
 	taskDb := database.Query.Task
 	sql := taskDb.WithContext(c)
+	if req.ID != "" {
+		sql = sql.Where(taskDb.ID.Eq(req.ID))
+	}
 	if req.Type != 0 {
 		sql = sql.Where(taskDb.Level.Eq(req.Type))
 	}

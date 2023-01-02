@@ -24,7 +24,7 @@ func UpdateUserTaskApi(c *gin.Context) {
 		common.SendResponse(c, errno.NoParams, err.Error())
 		return
 	}
-	userQuestion, err := updateUserTask(c, req.ID, req.UserID, req.TaskID, req.Count, req.TargetID)
+	userQuestion, err := updateUserTask(c, req.ID, req.UserID, req.TaskID, req.Count, req.TargetID, req.Addtion)
 	if err != nil {
 		log.Printf("updateUserTask failed, req:%v, err:%v\n", req, err)
 		common.SendResponse(c, errno.InternalServerError, err.Error())
@@ -46,7 +46,7 @@ func checkUpdateUseTaskParams(req *model.UserTask) error {
 	return nil
 }
 
-func updateUserTask(c *gin.Context, id, userId, taskId string, count int64, targetId string) (*model.UserTask, error) {
+func updateUserTask(c *gin.Context, id, userId, taskId string, count int64, targetId, additon string) (*model.UserTask, error) {
 	userTaskDb := database.Query.UserTask
 	userTask, err := userTaskDb.WithContext(c).Where(userTaskDb.ID.Eq(id)).First()
 	if err != nil && err != gorm.ErrRecordNotFound {
@@ -64,6 +64,9 @@ func updateUserTask(c *gin.Context, id, userId, taskId string, count int64, targ
 	}
 	if targetId != "" {
 		userTask.TargetID = targetId
+	}
+	if additon != "" {
+		userTask.Addtion = additon
 	}
 	userTask.Count = count
 	if userTask.Count <= 0 {

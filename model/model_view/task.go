@@ -3,6 +3,7 @@ package model_view
 import "education/model"
 
 type TaskReq struct {
+	ID         string `json:"id"`
 	Type       int64  `gorm:"column:type;type:int" json:"type"`                  // 任务类型 1-打怪类 2-阅读任务 3-完成文章的题目4-附件任务
 	Level      int64  `gorm:"column:level;type:int" json:"level"`                // 任务等级
 	Image      string `gorm:"column:image;type:varchar(255)" json:"image"`       // 图片链接

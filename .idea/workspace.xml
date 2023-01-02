@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="783f29c6-7879-41d0-9009-f4b2cbe03594" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/exchange_gift/exchange_gift.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/exchange_gift/exchange_gift.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/exchange_gift/get_exchange_gift.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/exchange_gift/get_exchange_gift.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_view/exchange_gift.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/exchange_gift.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/task/get_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/task/get_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/task/update_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/task/update_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/user_task/add_user_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_task/add_user_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/user_task/get_user_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_task/get_user_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/user_task/update_user_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/user_task/update_user_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model_view/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model_view/user_tak.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_view/user_tak.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user_task.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user_task.gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/user_task.gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/query/user_task.gen.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,22 +145,22 @@
       <screen x="0" y="0" width="1549" height="823" />
     </state>
     <state x="555" y="170" key="FileChooserDialogImpl/0.0.1549.823@0.0.1549.823" timestamp="1672479400510" />
-    <state width="1506" height="169" key="GridCell.Tab.0.bottom" timestamp="1672568451087">
+    <state width="1506" height="162" key="GridCell.Tab.0.bottom" timestamp="1672661694076">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="169" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1672568451087" />
-    <state width="1506" height="169" key="GridCell.Tab.0.center" timestamp="1672568451077">
+    <state width="1506" height="162" key="GridCell.Tab.0.bottom/0.0.1549.823@0.0.1549.823" timestamp="1672661694076" />
+    <state width="1506" height="162" key="GridCell.Tab.0.center" timestamp="1672661694076">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="169" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1672568451077" />
-    <state width="1506" height="169" key="GridCell.Tab.0.left" timestamp="1672568451077">
+    <state width="1506" height="162" key="GridCell.Tab.0.center/0.0.1549.823@0.0.1549.823" timestamp="1672661694076" />
+    <state width="1506" height="162" key="GridCell.Tab.0.left" timestamp="1672661694076">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="169" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1672568451077" />
-    <state width="1506" height="169" key="GridCell.Tab.0.right" timestamp="1672568451077">
+    <state width="1506" height="162" key="GridCell.Tab.0.left/0.0.1549.823@0.0.1549.823" timestamp="1672661694076" />
+    <state width="1506" height="162" key="GridCell.Tab.0.right" timestamp="1672661694076">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
-    <state width="1506" height="169" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1672568451077" />
+    <state width="1506" height="162" key="GridCell.Tab.0.right/0.0.1549.823@0.0.1549.823" timestamp="1672661694076" />
     <state width="1506" height="161" key="GridCell.Tab.1.bottom" timestamp="1672222458663">
       <screen x="0" y="0" width="1549" height="823" />
     </state>
@@ -224,7 +230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/api/user/user_task/add_user_task.go</url>
-          <line>66</line>
+          <line>67</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -264,26 +270,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/api/user/user_task/get_user_task.go</url>
-          <line>15</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/api/user/user_task/get_user_task.go</url>
-          <line>22</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/api/user/user_task/get_user_task.go</url>
-          <line>27</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/api/user/user_task/get_user_task.go</url>
-          <line>33</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/api/user/user_task/get_user_task.go</url>
           <line>66</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
@@ -294,7 +280,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/api/user/user_task/get_user_task.go</url>
-          <line>106</line>
+          <line>94</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">

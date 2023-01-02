@@ -15,6 +15,7 @@ type UserTask struct {
 	IsFinished int64  `gorm:"column:is_finished;type:tinyint" json:"is_finished"`  // 是否完成
 	Count      int64  `gorm:"column:count;type:int" json:"count"`                  // 个数
 	TargetID   string `gorm:"column:target_id;type:varchar(255)" json:"target_id"` // 目标id
+	Addtion    string `gorm:"column:addtion;type:varchar(255)" json:"addtion"`     // 任务附件
 }
 
 // TableName UserTask's table name

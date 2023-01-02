@@ -70,6 +70,9 @@ func updateTask(c *gin.Context, req *model.Task) (*model.Task, error) {
 	if req.Level != 0 {
 		oldTask.Level = req.Level
 	}
+	if req.Introduction != "" {
+		oldTask.Introduction = req.Introduction
+	}
 	oldTask.CanRepeated = req.CanRepeated
 	err = taskDb.WithContext(c).Save(oldTask)
 	if err != nil {
